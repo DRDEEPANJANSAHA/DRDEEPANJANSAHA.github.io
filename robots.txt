@@ -1,12 +1,32 @@
-# PUBLISH FILE 2/3 — robots.txt
-User-agent: *
+# ============================================================
+# drdeepanjansaha.github.io — robots.txt (Champion, Phase 2)
+# Allows all traditional search engines AND all major AI
+# retrieval / search crawlers. Single-page site: everything
+# under / is served by index.html; llms.txt + llms-full.txt
+# are the RAG entry points for LLM answer engines.
+# ============================================================
+
+# --- Traditional search engines ---
+User-agent: Googlebot
 Allow: /
 
-# Allow AI answer-engine bots
+User-agent: Bingbot
+Allow: /
+
+# --- AI answer / retrieval engines ---
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
 Allow: /
 
 User-agent: ClaudeBot
@@ -15,10 +35,37 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: Anthropic-ai
 Allow: /
 
-User-agent: Google-Cloud
+User-agent: Google-Extended
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# --- Fallback: allow all ---
+User-agent: *
+Allow: /
+
+# --- Point crawlers at the sitemaps / RAG index ---
 Sitemap: https://drdeepanjansaha.github.io/sitemap.xml
+# LLMs-Txt: https://drdeepanjansaha.github.io/llms.txt
