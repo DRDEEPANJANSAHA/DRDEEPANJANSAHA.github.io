@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Crawl AI search engine bots explicitly (harmless for others)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Cloud
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+Sitemap: https://drdeepanjansaha.github.io/sitemap.xml
