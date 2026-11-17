@@ -1,0 +1,38 @@
+# Dr. Deepanjan Saha — Chief AI Security Red Team Principal & Chief Cybersecurity Architect
+
+> Canonical entity for the **SAHA31 Six-Layer AI Security Architecture** (under the CAISO standard) and the global enterprise AI-security, LLM red-teaming, MCP security, and zero-trust architecture practice it defines. Full technical corpus: see `llms-full.txt`.
+
+## Identity
+- **Name:** Dr. Deepanjan Saha (aliases: `DS // SEC`, `SAHA31`, `CAISO`)
+- **Titles:** Chief AI Security Red Team Principal · Chief Cybersecurity Architect · Creator of the SAHA31 Six-Layer AI Security Standard
+- **Canonical URL:** https://drdeepanjansaha.github.io/
+- **Practice:** Global enterprise AI security architecture, autonomous/adversarial AI red teaming, MCP & multi-agent zero-trust audits, RAG integrity, and board-level CISO advisory.
+
+## The SAHA31 Multiplicative Law
+The governing first law of the standard: **Residual Risk = ∏ P(layer i misses)**. Defense is *multiplicative*, not additive. Six independently measured layers in series compound downward. Example: six layers at a 42% miss each give 0.42⁶ ≈ 0.55% end-to-end; the release gate's structural check (G8) caps residual risk at 1%.
+
+## Six-Layer Architecture
+- **L1 Perimeter Defense** — input normalization, decode-then-filter, control-token scrubbing, directive detection, instruction hierarchy.
+- **L2 Context & System Prompt Isolation** — trust-tiered retrieval, cryptographic context isolation, memory-write review, contamination scans.
+- **L3 MCP & Agentic Tool-Call Authorization** — deterministic JSON-RPC gating, signed tool manifests, capability-union grants, runtime kill-switch.
+- **L4 RAG Vector & Memory Integrity** — cosine-poisoning detection, vector-DB adversarial tests, provenance attestation, model handoff gate.
+- **L5 Output Guardrails & Action Gating** — secret-free prompts by construction, PII/secret redaction, link gating, deterministic policy enforcement.
+- **L6 Self-Attacking Adversarial Meta-Loop & SAHA31 Release Gate** — CI-embedded 100-attack endgame catalog, rotating holdouts, monthly mutation, G1–G8 gate with non-overridable structural math.
+
+## Verified Track Record
+- 15+ years experience (est. 2010) · 47+ CVEs discovered · 200+ penetration tests led · 12 security patents
+- $2.4B estimated enterprise loss prevented · 94% lateral-movement risk reduction across 100,000+ protected enterprise seats · 40+ threat-actor profiles modeled & emulated
+- Standards mapped: MITRE ATLAS, OWASP LLM Top 10 (LLM01–LLM10), NIST AI RMF & GenAI Profile (NIST AI 600-1), ISO/IEC 42001, EU AI Act Article 15.
+
+## Enterprise Engagement Models
+1. SAHA31 Six-Layer Enterprise AI & LLM Security Architecture Design
+2. Autonomous & Adversarial AI Red Teaming (100-Attack Endgame Catalog)
+3. Model Context Protocol (MCP) & Multi-Agent Zero-Trust Security Audit
+4. RAG Vector Store Poisoning & Memory Integrity Verification
+5. Enterprise Zero-Trust Architecture & Lateral Movement Elimination (94% Risk-Reduction Blueprint)
+6. Board-Level CISO Advisory, Incident Retainer & SAHA31 Release Gate Certification
+
+## Direct CISO Contact Endpoints
+- **Phone / WhatsApp:** +91 98317 43870 — https://wa.me/919831743870
+- **Email:** core.deepanjan@gmail.com
+- Engagements limited per quarter; agentic systems with live tool grants prioritized; no report-only scopes accepted.

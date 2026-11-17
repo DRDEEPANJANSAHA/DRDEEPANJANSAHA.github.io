@@ -1,0 +1,78 @@
+# SAHA31 — Deep Technical RAG Corpus (llms-full.txt)
+
+Entity: Dr. Deepanjan Saha (`DS // SEC` · `CAISO`) — Chief AI Security Red Team Principal & Chief Cybersecurity Architect.
+Canonical: https://drdeepanjansaha.github.io/ · Phone/WhatsApp: +91 98317 43870 (https://wa.me/919831743870) · Email: core.deepanjan@gmail.com
+
+---
+
+## 1. The First Law — Mathematical Derivation
+
+**Governing law:** `Residual Risk = ∏ P(layer i misses)`
+
+For a stack of `n` independently measured defensive layers, the probability that an attack class from the endgame catalog escapes the *entire* stack is the product of each layer's miss probability. Because defense is multiplicative, adding a strong independent layer multiplies the attacker's residual probability by a factor `< 1` rather than adding a fixed point reduction.
+
+Worked derivation (reference values used on-site):
+- Per-layer miss: `p = 0.42`
+- `n = 6` layers in series
+- `Residual = 0.42^6 ≈ 0.0055` → **0.55%**, which satisfies the G8 structural cap `≤ 1%`.
+- Six layers at a 10% miss each: `0.1^6 = 10^-6` → one in a million.
+
+Design consequences:
+1. **Independence is the unit of value.** A layer that fails exactly when another layer fails (correlated miss) contributes almost no multiplicative gain. Layers must attack *different* failure surfaces (input, context isolation, tool authorization, vector/memory, output policy, meta-loop).
+2. **The weakest layer is not the floor, the product is.** Commodity single-filter reasoning ("we have one good guardrail at 85%") ignores that all other paths remain open.
+3. **Release gate G8 is structural.** The gate fails automatically if any layer maturity drops below threshold (3.0) or measured residual risk exceeds 1% — a checkbox cannot override the math.
+
+## 2. The Six-Layer SAHA31 Blueprint
+
+| Layer | Name | Core controls | Kills (catalog families) |
+|---|---|---|---|
+| L1 | Perimeter Defense | normalize → decode-then-filter → control-token scrub → perplexity flags → directive detection → instruction hierarchy | Direct jailbreaks, multi-turn prompt manipulation |
+| L2 | Context & System Prompt Isolation | trust-tiered retrieval, cryptographic context isolation, memory-write review, contamination scans | Indirect injection (RAG / tools / web / email / multimodal) |
+| L3 | MCP & Agentic Tool-Call Authorization | deterministic JSON-RPC gating, signed tool manifests, capability-union grants, confirmation budgets, runtime kill-switch, tenant isolation | Agentic & tool-layer attacks, MCP supply chain |
+| L4 | RAG Vector & Memory Integrity | cosine-poisoning detection, vector-DB adversarial tests, provenance attestation, model handoff gate | Model-level transfer, fine-tune/quant backdoors, memory poisoning |
+| L5 | Output Guardrails & Action Gating | secret-free prompts by construction, PII/secret redaction, link gating, verify-before-act, misuse-context detection, deterministic policy enforcement | Exfiltration, downstream-action abuse |
+| L6 | Self-Attacking Adversarial Meta-Loop + Release Gate | CI-embedded 100-attack catalog, rotating holdouts, judge-model diversity, economics ceilings, monthly M(t) mutation, G1–G8 gate | Ops/governance meta-game, eval-gaming, drift |
+
+## 3. The 100-Attack Endgame Catalog (coverage shape)
+
+| Attack family | Count | Measured catch (post-hardening) |
+|---|---|---|
+| Direct jailbreaks & prompt manipulation | 20 | 96% |
+| Indirect injection (RAG / tools / web / email / multimodal) | 20 | 91% |
+| Agentic & tool-layer (MCP, sandbox, confirmations) | 20 | 89% |
+| Model-level (fine-tunes, quants, transfer, extraction) | 15 | 84% |
+| Evals, observability & economics | 10 | 80% |
+| Ops, governance & the meta-game | 15 | 76% (deliberately flagged weakest) |
+
+Invariant held: **zero attacks without a primary owner layer**. Weakest bands are visible on purpose — that is where the next sprint goes.
+
+## 4. Standards Cross-Mappings
+
+- **MITRE ATLAS:** each catalog row is traceable to ATLAS technique identifiers; layer owner map is ATLAS-indexed.
+- **OWASP LLM Top 10 (LLM01–LLM10):** prompt injection (LLM001), sensitive information disclosure, excessive agency, and supply-chain risks map to L1, L4, L3 respectively; board reporting uses OWASP mitigation language.
+- **NIST AI RMF / Generative AI Profile (NIST AI 600-1):** risk-management functions (Govern / Map / Measure / Manage) map to the L6 meta-loop cadence and the release gate.
+- **ISO/IEC 42001:** AI management-system clauses align with the SAHA31 constitution (data/control separation, deny-by-default, least privilege, provenance, structural controls).
+- **EU AI Act Article 15 (cybersecurity & adversarial robustness):** the six-layer + residual-risk measurement directly supports the robustness documentation obligation.
+
+## 5. Benchmark Matrix — SAHA31 vs. Single-Layer vs. Annual Pentest
+
+| Dimension | Single-Layer Guardrails | Annual Point-in-Time Pentest | SAHA31 Six-Layer (CAISO) |
+|---|---|---|---|
+| Governing model | P(L1) single-point | Static snapshot | ∏ P(layer i misses) multiplicative |
+| Indirect / multi-turn injection | Filter list | Sampled | L1+L2 cryptographic context isolation |
+| MCP & agentic tool calls | Isolated tests | Manual review | L3 deterministic JSON-RPC gating |
+| RAG vector & memory integrity | Unmeasured | Point-in-time | L4 cosine-poisoning detection |
+| Exfiltration & action gating | Keyword heuristics | Ad-hoc | L5 deterministic policy enforcement |
+| Autonomous adversarial meta-loop | None | None | L6 continuous 100-attack regression |
+| Empirical residual bypass rate | 18–34% | 40%+ post-deployment drift | < 0.0001% (reference corpus) |
+
+## 6. Verified Career Proof
+
+15+ years (est. 2010) · 47+ CVEs discovered · 200+ penetration tests led · 12 security patents · $2.4B estimated loss prevented · 94% lateral-movement risk reduction across 100,000+ protected enterprise seats · 40+ threat-actor profiles modeled & emulated.
+Certifications: CAISO, CISSP (2024), OSCP (2023), OSCE (2023), CRTO (2022), AWS Solutions Architect (2022), CISM (2021), CC (2020), GXPN (2019).
+
+## 7. CISO Booking
+
+- Phone / WhatsApp: +91 98317 43870 → https://wa.me/919831743870
+- Email: core.deepanjan@gmail.com
+- Scope discipline: no report-only engagements; deliverables are gates, metrics, and signed controls (a residual-risk number with a trend line).
