@@ -1,0 +1,6 @@
+Contact: mailto:core.deepanjan@gmail.com
+Contact: tel:+91-98317-43870
+Canonical: https://drdeepanjansaha.github.io/.well-known/security.txt
+Policy: https://drdeepanjansaha.github.io/#saha31
+Hiring: https://drdeepanjansaha.github.io/#contact
+Expires: 2027-11-18T00:00:00.000Z
