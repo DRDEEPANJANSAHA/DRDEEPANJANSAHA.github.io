@@ -1,0 +1,188 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 6 0 R /F2 7 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 6 0 R /F2 7 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 2692 >>
+stream
+BT
+/F2 16 Tf
+72 728 Td
+(The SAHA31 Standard:) Tj
+72 708 Td
+(A Multiplicative Six-Layer Defense-in-Depth) Tj
+72 688 Td
+(Architecture for Enterprise LLM, RAG,) Tj
+72 668 Td
+(MCP, and Agentic AI Systems) Tj
+/F2 11 Tf
+72 648 Td
+(Residual Risk = P\(L1\) x P\(L2\) x P\(L3\) x P\(L4\) x P\(L5\) x P\(L6\)) Tj
+/F1 10 Tf
+72 628 Td
+14 TL
+(Dr. Deepanjan Saha - Chief AI Security Red Team Principal & Chief Cybersecurity Architect, CAISO) Tj
+T*
+(Canonical: https://drdeepanjansaha.github.io/ | Type: Technical Note / Standard) Tj
+/F2 11 Tf
+72 584 Td
+(1. PROBLEM STATEMENT) Tj
+/F1 10 Tf
+14 TL
+72 566 Td
+(Enterprise generative-AI security is engineered additively: organizations stack) Tj
+T*
+(guardrails and trust that the strongest filter sets the floor. Adversarial) Tj
+T*
+(practice - indirect multi-turn injection, tool-chain escalation, RAG/memory) Tj
+T*
+(poisoning, and MCP supply-chain attacks - proves otherwise: attacks traverse) Tj
+T*
+(the full chain, so a stack whose layers fail in correlation is nearly as weak) Tj
+T*
+(as its weakest layer.) Tj
+/F2 11 Tf
+72 472 Td
+(2. THE GOVERNING LAW) Tj
+/F1 10 Tf
+72 454 Td
+(Residual Risk = P\(L1\) x P\(L2\) x P\(L3\) x P\(L4\) x P\(L5\) x P\(L6\)) Tj
+T*
+(Six layers at a 42% miss each: 0.42^6 = 0.55%. Six layers at 10% miss: 10^-6.) Tj
+72 416 Td
+(D1. Independence is the unit of value; correlated failure nullifies the product.) Tj
+T*
+(D2. Measured catch rates, not brochure claims, on a versioned attack corpus.) Tj
+T*
+(D3. Structural gating: G8 fails if any layer maturity < 3.0 or residual risk > 1%.) Tj
+/F2 11 Tf
+72 360 Td
+(3. THE SIX LAYERS) Tj
+/F1 10 Tf
+13 TL
+72 342 Td
+(L1 Perimeter Defense: normalization, decode-then-filter, control-token) Tj
+T*
+(    scrubbing, perplexity flags, directive detection, instruction hierarchy.) Tj
+T*
+(L2 Context & System Prompt Isolation: trust-tiered retrieval, cryptographic) Tj
+T*
+(    context isolation, memory-write review, contamination scans.) Tj
+T*
+(L3 MCP & Agentic Tool-Call Authorization: deterministic JSON-RPC gating, signed) Tj
+T*
+(    tool manifests, capability-union grants, confirmation budgets, kill-switch.) Tj
+T*
+(L4 RAG Vector & Memory Integrity: cosine-poisoning detection, vector-DB) Tj
+T*
+(    adversarial tests, provenance attestation, model handoff gate.) Tj
+T*
+(L5 Output Guardrails & Action Gating: secret-free prompts by construction,) Tj
+T*
+(    PII/secret redaction, link gating, verify-before-act, deterministic policy.) Tj
+T*
+(L6 Self-Attacking Adversarial Meta-Loop + SAHA31 Release Gate: CI-embedded) Tj
+T*
+(    100-attack catalog, rotating holdouts, monthly mutation, G1-G8 gate.) Tj
+/F1 8 Tf
+72 60 Td
+(drdeepanjansaha.github.io - Technical Note / Standard - SAHA31 - 2026) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+8 0 obj
+<< /Length 1741 >>
+stream
+BT
+/F2 11 Tf
+72 720 Td
+(4. VERIFICATION REGIME) Tj
+/F1 10 Tf
+14 TL
+72 700 Td
+(Every attack in the 100-attack endgame catalog has exactly one owner layer) Tj
+T*
+(invariant: zero unmapped attacks. Weak bands are surfaced deliberately; the) Tj
+T*
+(meta-loop mutates the catalog monthly, so measured catch rates - and therefore) Tj
+T*
+(the residual-risk product - are never static.) Tj
+72 640 Td
+(Empirical residual bypass on the reference corpus: < 0.0001%.) Tj
+T*
+(vs. 18-34% for single-layer guardrails and 40%+ drift for annual point-in-time) Tj
+T*
+(pentests.) Tj
+/F2 11 Tf
+72 580 Td
+(5. STANDARDS ALIGNMENT) Tj
+/F1 10 Tf
+72 560 Td
+(MITRE ATLAS - technique taxonomy; OWASP LLM Top 10, LLM01-LLM10 - board) Tj
+T*
+(reporting; NIST AI RMF / Generative AI Profile 600-1 - governance;) Tj
+T*
+(ISO/IEC 42001 - AI management systems; EU AI Act Article 15 - adversarial-) Tj
+T*
+(robustness documentation.) Tj
+/F2 11 Tf
+72 486 Td
+(6. ENTERPRISE ENGAGEMENT) Tj
+/F1 10 Tf
+72 466 Td
+(SAHA31 engagements deliver instrumented layers, a residual-risk number with a) Tj
+T*
+(trend line, and the gate as code - never a report-only deliverable.) Tj
+T*
+(Delivery: a measured residual-risk number, the owner-layer map, and the gate) Tj
+T*
+(G8 enforced in CI - structural math no checkbox can override.) Tj
+/F2 11 Tf
+72 392 Td
+(7. CONTACT) Tj
+/F1 10 Tf
+72 372 Td
+(Phone / WhatsApp: +91 98317 43870 | https://wa.me/919831743870) Tj
+T*
+(Email: core.deepanjan@gmail.com | Web: https://drdeepanjansaha.github.io/) Tj
+T*
+(Engagements limited per quarter. Agentic systems with live tool grants) Tj
+T*
+(prioritized. No report-only scopes accepted.) Tj
+/F1 8 Tf
+72 60 Td
+(The SAHA31 Standard - Technical Note / Standard - Dr. Deepanjan Saha - 2026) Tj
+ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000121 00000 n
+0000000257 00000 n
+0000000393 00000 n
+0000003136 00000 n
+0000003205 00000 n
+0000003279 00000 n
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+5071
+%%EOF
