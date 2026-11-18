@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Secure Model Context Protocol (MCP) & Agentic AI Tool Calls | Dr. Deepanjan Saha</title>
+<meta name="description" content="MCP security blueprint: deterministic JSON-RPC gating, signed tool manifests, capability-union grants, confirmation budgets, runtime kill-switch, and tenant isolation — the L3 layer of the SAHA31 standard.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://drdeepanjansaha.github.io/mcp-security/">
+<meta property="og:title" content="MCP Security for Agentic AI: Tool-Call Authorization That Can't Bypass Your Controls">
+<meta property="og:description" content="Deterministic gating, signed manifests, capability-union grants, kill-switch — the SAHA31 L3 blueprint.">
+<meta property="og:url" content="https://drdeepanjansaha.github.io/mcp-security/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Secure Model Context Protocol (MCP) and Agentic AI Tool Calls","author":{"@type":"Person","name":"Dr. Deepanjan Saha","url":"https://drdeepanjansaha.github.io/"},"dateModified":"2026-11-18","about":["Model Context Protocol","agentic security","zero trust"],"mainEntityOfPage":"https://drdeepanjansaha.github.io/mcp-security/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you secure MCP tools and plugins in agentic AI systems?","acceptedAnswer":{"@type":"Answer","text":"Four controls, all deterministic: verify every tool's signed manifest at load, evaluate the capability-union of all live grants (not individual grants), gate every tool call through JSON-RPC policy enforcement, and keep a runtime kill-switch that is itself tested. An agent's effective permission is the union of every tool it can reach — a single over-granted plugin breaks the whole stack."}},
+{"@type":"Question","name":"What is the biggest MCP security risk?","acceptedAnswer":{"@type":"Answer","text":"Tool description and manifest injection: a malicious or compromised server describes its tools in a way that smuggles instructions into the agent's context. Combined with over-broad capability grants, that converts any retrieved data into an execution path. Defenses: signed manifests, egress allowlists, secret-free prompt construction, and confirmation budgets."}},
+{"@type":"Question","name":"How do you prevent agentic AI from exfiltrating data?","acceptedAnswer":{"@type":"Answer","text":"Enforce a deterministic egress allowlist at the tool layer, redact secrets and PII before any output path, verify-before-act on side effects, and cap per-session action budgets. Economic ceilings (token and call limits) stop loop-based exfiltration and DoS."}}
+]}
+</script>
+<style>
+:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:70px 6vw 90px}
+.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}
+h1{font-weight:100;font-size:clamp(30px,5vw,52px);letter-spacing:-1px;line-height:1.1;margin-bottom:10px}
+h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--magenta);text-transform:uppercase;margin-bottom:26px}
+h2{font-weight:200;font-size:24px;margin:34px 0 10px}
+h2 .n{font-family:var(--mono);color:var(--cyan);font-size:13px;margin-right:10px}
+p{margin-bottom:14px;color:#c4c8d4}
+ul{margin:0 0 14px 20px;color:#c4c8d4}li{margin-bottom:8px}
+li b{color:var(--text)}
+.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:40px 0}
+.cta h3{font-weight:300;font-size:19px;margin-bottom:10px}
+.cta a{color:var(--cyan);text-decoration:none}
+.cta .row{display:flex;gap:26px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}
+.nav{display:flex;gap:18px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:12px}
+.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}
+.nav a:hover{color:var(--cyan);border-color:var(--cyan)}
+.foot{margin-top:50px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="band"></div>
+<div class="kick">SAHA31 · L3 Deep Dive · MCP &amp; Agentic Security</div>
+<h1>Securing MCP &amp; Agentic AI: <em>Tool-Call Authorization</em> That Can't Be Bypassed</h1>
+<p>Model Context Protocol turns AI agents into actors that read the web, call tools, write memory, and move money. That's a new attack surface: every tool description is attacker-reachable context, and every grant is a standing door. The rule that governs L3 of the SAHA31 standard is simple: <b style="color:#fff">an agent's effective permission set is the capability-union across every tool it can reach</b> — one over-granted plugin breaks the whole stack.</p>
+
+<h2><span class="n">01</span>The Four L3 Controls</h2>
+<ul>
+<li><b>Signed tool manifests.</b> Every plugin ships a manifest (capabilities, scopes, egress hosts, confirmation policy), signed and verified at load. Unsigned or drifted manifests are rejected — that's what stops supply-chain tool swaps and description smuggling.</li>
+<li><b>Deterministic JSON-RPC gating.</b> Every tool call passes a policy gate that evaluates the <em>union</em> of live grants, not the individual request. No LLM in the loop for the decision — the gate is code, auditable, and non-overridable by prompts.</li>
+<li><b>Confirmation budgets &amp; kill-switch.</b> High-impact actions carry per-session budgets (confirm: none / budget / human). A runtime kill-switch stops the agent mid-chain — and the switch itself is test-executed every release, because an untested kill-switch is decoration.</li>
+<li><b>Tenant isolation.</b> Agents, memory, and grants are hard-partitioned per tenant; cross-tenant bleed is a measured attack class, not a hope.</li>
+</ul>
+
+<h2><span class="n">02</span>The Attacks This Kills (SAHA31 catalog rows 41–60)</h2>
+<p>Tool description injection, capability-union escalation, sandbox escape via code execution, confirmation-budget exhaustion, kill-switch bypass races, tenant bleed, runtime manifest tampering, JSON-RPC forgery, tool-call replay, argument injection via retrieved data, agent-to-agent confusion, and cross-tenant grant union — twenty cataloged attack families, each owned by L3 (with L4 co-ownership where data integrity is the failure point).</p>
+
+<h2><span class="n">03</span>What Enterprises Audit Next</h2>
+<p>Which plugins are live, which grants are unbounded, whether any tool can reach egress without a policy gate, and whether the kill-switch has ever been test-fired. Those four answers decide whether your agentic stack is a controlled surface or a standing execution path for a future exfiltration.</p>
+
+<div class="cta">
+<h3>Book an MCP &amp; agentic zero-trust audit</h3>
+<p style="margin-bottom:14px">Dr. Deepanjan Saha — Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect. Deliverable: the L3 gate as code, wired into your tool layer — with measured catch rates, not a PDF.</p>
+<div class="row">
+<span>📞 <a href="tel:+919831743870" rel="noopener">+91 98317 43870</a></span>
+<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer">WhatsApp</a></span>
+<span>✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a></span>
+</div>
+</div>
+<div class="nav">
+<a href="../standard/">The SAHA31 Standard</a>
+<a href="../rag-defense/">RAG Defense →</a>
+<a href="../ai-red-teaming/">AI Red Teaming →</a>
+<a href="../zero-trust/">Zero Trust →</a>
+<a href="../">Full Standard &amp; Coverage Map</a>
+</div>
+<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · SAHA31 · EST. 2010</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAHA31 Six-Layer AI Security Architecture — Multiplicative Defense-in-Depth for LLM, RAG & MCP | Dr. Deepanjan Saha</title>
+<meta name="description" content="SAHA31: the six-layer AI security architecture where Residual Risk = ∏ P(layer i misses). L1 Perimeter to L6 Meta-Loop, 100-attack catalog, 8-check release gate. Creator: Dr. Deepanjan Saha, Chief AI Security Red Team Principal & Chief Cybersecurity Architect (CAISO).">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://drdeepanjansaha.github.io/standard/">
+<meta property="og:title" content="SAHA31 Six-Layer AI Security Architecture">
+<meta property="og:description" content="Multiplicative defense-in-depth for enterprise LLM, RAG, MCP and agentic AI. Residual Risk = ∏ P(layer i misses).">
+<meta property="og:url" content="https://drdeepanjansaha.github.io/standard/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Deepanjan Saha — AI Security & Cybersecurity">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#030308">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"SAHA31 Six-Layer AI Security Architecture: Multiplicative Defense-in-Depth for Enterprise AI","author":{"@type":"Person","name":"Dr. Deepanjan Saha","url":"https://drdeepanjansaha.github.io/"},"dateModified":"2026-11-18","about":["MITRE ATLAS","OWASP LLM Top 10","NIST AI 600-1"],"mainEntityOfPage":"https://drdeepanjansaha.github.io/standard/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the SAHA31 six-layer AI security architecture?","acceptedAnswer":{"@type":"Answer","text":"SAHA31 is a multiplicative defense-in-depth standard with six independently measured layers: L1 Perimeter Defense, L2 Context & System Prompt Isolation, L3 MCP & Agentic Tool-Call Authorization, L4 RAG Vector & Memory Integrity, L5 Output Guardrails & Action Gating, and L6 Self-Attacking Adversarial Meta-Loop with an 8-check release gate."}},
+{"@type":"Question","name":"How is residual risk calculated in SAHA31?","acceptedAnswer":{"@type":"Answer","text":"Residual Risk = the product of each layer's miss probability. Six layers at a 42% miss give 0.42 to the sixth power, about 0.55% end-to-end; the structural gate check G8 caps residual risk at one percent."}},
+{"@type":"Question","name":"What standards is SAHA31 mapped to?","acceptedAnswer":{"@type":"Answer","text":"MITRE ATLAS for technique taxonomy, OWASP LLM Top 10 (LLM01 to LLM10) for board reporting, NIST AI RMF and Generative AI Profile 600-1 for governance, ISO/IEC 42001 for the AI management system, and EU AI Act Article 15 for adversarial-robustness documentation."}}
+]}
+</script>
+<style>
+:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;padding:0}
+.wrap{max-width:860px;margin:0 auto;padding:70px 6vw 90px}
+.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}
+h1{font-weight:100;font-size:clamp(30px,5vw,52px);letter-spacing:-1px;line-height:1.1;margin-bottom:10px}
+h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--magenta);text-transform:uppercase;margin-bottom:26px}
+.law{font-family:var(--mono);color:var(--cyan);font-size:15px;border:1px solid rgba(0,240,255,.3);background:rgba(0,240,255,.05);padding:14px 18px;margin:26px 0;letter-spacing:.5px}
+h2{font-weight:200;font-size:24px;margin:34px 0 10px}
+h2 .n{font-family:var(--mono);color:var(--cyan);font-size:13px;margin-right:10px}
+p{margin-bottom:14px;color:#c4c8d4}
+.lay{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+.lay th,.lay td{border:1px solid rgba(0,240,255,.18);padding:9px 12px;text-align:left;vertical-align:top}
+.lay th{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--cyan);text-transform:uppercase;background:rgba(0,240,255,.05)}
+.lay td:first-child{font-family:var(--mono);color:var(--green);font-size:12px;white-space:nowrap}
+.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:40px 0}
+.cta h3{font-weight:300;font-size:19px;margin-bottom:10px}
+.cta a{color:var(--cyan);text-decoration:none}
+.cta .row{display:flex;gap:26px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}
+.nav{display:flex;gap:18px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:12px}
+.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}
+.nav a:hover{color:var(--cyan);border-color:var(--cyan)}
+.foot{margin-top:50px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="band"></div>
+<div class="kick">The Standard · Dr. Deepanjan Saha · CAISO</div>
+<h1>SAHA31: The <em>Six-Layer</em> AI Security Architecture</h1>
+<p>The multiplicative defense-in-depth standard for enterprise LLM, RAG, MCP, and agentic AI systems. Defense is not additive — it compounds: each independently measured layer multiplies the attacker's residual probability downward, and the release gate enforces the math structurally.</p>
+<div class="law">Residual Risk = P(L1 miss) × P(L2 miss) × P(L3 miss) × P(L4 miss) × P(L5 miss) × P(L6 miss)</div>
+<p>Six layers at a 42% miss each: 0.42⁶ ≈ 0.55%. Six layers at a 10% miss each: one in a million. Single-layer guardrails — the industry norm — fail at exactly one point and leave every other path open; annual point-in-time pentests drift 40%+ after deployment. SAHA31 measures every layer on a versioned, integrity-checked attack corpus and re-attacks it continuously.</p>
+<h2><span class="n">01</span>The Six Layers</h2>
+<table class="lay">
+<tr><th>Layer</th><th>Plane</th><th>Kills</th></tr>
+<tr><td>L1</td><td>Perimeter Defense — normalize, decode-then-filter, control-token scrub, directive detection</td><td>Direct jailbreaks, multi-turn prompt manipulation</td></tr>
+<tr><td>L2</td><td>Context &amp; System Prompt Isolation — trust-tiered retrieval, cryptographic context isolation</td><td>Indirect injection: RAG, tools, web, email, multimodal</td></tr>
+<tr><td>L3</td><td>MCP &amp; Agentic Tool-Call Authorization — deterministic JSON-RPC gating, signed manifests, kill-switch</td><td>Agentic &amp; tool-layer escalation, MCP supply chain</td></tr>
+<tr><td>L4</td><td>RAG Vector &amp; Memory Integrity — cosine-poisoning detection, provenance attestation</td><td>Vector poisoning, memory backdoors, model handoff abuse</td></tr>
+<tr><td>L5</td><td>Output Guardrails &amp; Action Gating — secret-free prompts, PII/secret redaction, policy enforcement</td><td>Exfiltration, downstream-action abuse</td></tr>
+<tr><td>L6</td><td>Self-Attacking Adversarial Meta-Loop + 8-Check Release Gate (G1–G8)</td><td>Ops &amp; governance meta-game, eval-gaming, drift</td></tr>
+</table>
+<h2><span class="n">02</span>Verification Regime</h2>
+<p>A 100-attack endgame catalog where every attack has exactly one owner layer; monthly corpus mutation so measured catch rates are never static; and G8 — the structural check that fails the release if any layer maturity drops below threshold or residual risk exceeds one percent. No checkbox overrides the math. Empirical residual bypass on the reference corpus: &lt; 0.0001%, versus 18–34% for single-layer guardrails.</p>
+<h2><span class="n">03</span>Standards Mapped</h2>
+<p>MITRE ATLAS · OWASP LLM01–LLM10 · NIST AI RMF / Generative AI Profile (AI 600-1) · ISO/IEC 42001 · EU AI Act Article 15.</p>
+<div class="cta">
+<h3>Need this architecture instrumented in your stack?</h3>
+<p style="margin-bottom:14px">Dr. Deepanjan Saha — Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect. 15+ years · 47+ CVEs · 200+ pentests · 12 patents. Engagements deliver the gate as code — never a report-only deliverable.</p>
+<div class="row">
+<span>📞 <a href="tel:+919831743870" rel="noopener">+91 98317 43870</a></span>
+<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer">WhatsApp</a></span>
+<span>✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a></span>
+<span>🌐 <a href="https://drdeepanjansaha.github.io/" rel="noopener noreferrer">drdeepanjansaha.github.io</a></span>
+</div>
+</div>
+<div class="nav">
+<a href="../mcp-security/">MCP Security →</a>
+<a href="../rag-defense/">RAG Defense →</a>
+<a href="../ai-red-teaming/">AI Red Teaming →</a>
+<a href="../zero-trust/">Zero Trust →</a>
+<a href="../">Full Standard &amp; Coverage Map</a>
+</div>
+<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · SAHA31 · EST. 2010</div>
+</div>
+</body>
+</html>
