@@ -7,6 +7,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://drdeepanjansaha.github.io/ai-security-architecture/</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://drdeepanjansaha.github.io/cybersecurity-architecture/</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://drdeepanjansaha.github.io/standard/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>

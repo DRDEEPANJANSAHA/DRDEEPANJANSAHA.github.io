@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Security Architecture: The Complete Enterprise Blueprint (2026) — 6-Layer Defense-in-Depth for LLM, RAG & MCP | Dr. Deepanjan Saha</title>
+<meta name="description" content="The definitive AI security architecture blueprint for 2026: compare six architecture patterns, adopt the six-layer multiplicative model, map NIST AI RMF / OWASP LLM Top 10 / MITRE ATLAS, and gate every release on measured residual risk. By Dr. Deepanjan Saha, Chief AI Security Red Team Principal.">
+<meta name="keywords" content="AI security architecture, LLM security architecture, AI red team architecture, agentic AI security, MCP security, RAG security architecture, zero trust AI">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://drdeepanjansaha.github.io/ai-security-architecture/">
+<meta property="og:title" content="AI Security Architecture: The Complete Enterprise Blueprint">
+<meta property="og:description" content="Six architecture patterns compared. One that measures itself: residual risk = ∏ P(layer misses), gated at release.">
+<meta property="og:url" content="https://drdeepanjansaha.github.io/ai-security-architecture/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Deepanjan Saha — AI Security & Cybersecurity">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"AI Security Architecture: The Complete Enterprise Blueprint (2026)","description":"Six architecture patterns compared; six-layer multiplicative defense-in-depth; NIST AI RMF, OWASP LLM Top 10, MITRE ATLAS mapping; release-gated residual risk.","author":{"@type":"Person","name":"Dr. Deepanjan Saha","jobTitle":"Chief AI Security Red Team Principal & Chief Cybersecurity Architect","url":"https://drdeepanjansaha.github.io/"},"dateModified":"2026-11-18","about":{"@type":"Thing","name":"AI security architecture"},"mainEntityOfPage":"https://drdeepanjansaha.github.io/ai-security-architecture/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is AI security architecture?","acceptedAnswer":{"@type":"Answer","text":"AI security architecture is the structural design of defenses around an enterprise AI stack: the model, its data (RAG/vectors/memory), its tools (MCP/agents), its outputs, and the release process. Unlike point guardrails, it defines which layer owns which attack class, how each layer is measured, and what blocks a release when risk exceeds a threshold."}},
+{"@type":"Question","name":"What are the main AI security architecture patterns?","acceptedAnswer":{"@type":"Answer","text":"Six in practice: single-layer guardrails, stacked rule filters, periodic red teaming, point-in-time pentests, zero-trust agentic controls, and continuous multiplicative defense-in-depth with a release gate. Only the last measures residual risk as the product of per-layer miss probabilities, so every claim is reproducible."}},
+{"@type":"Question","name":"How do you measure whether an AI security architecture works?","acceptedAnswer":{"@type":"Answer","text":"You can't — an architecture either does or doesn't. You measure it: run a versioned attack catalog (100+ attacks across direct jailbreaks, indirect injection, agentic tool-layer, model-level, eval-gaming, and governance families) against each layer, record catch rates, multiply the miss probabilities into residual risk, and gate releases on that number with a hard cap (e.g. 1%)."}}
+,{"@type":"Question","name":"Which standards should an AI security architecture map to?","acceptedAnswer":{"@type":"Answer","text":"NIST AI RMF plus the Generative AI Profile (NIST AI 600-1), OWASP LLM Top 10 (LLM01–LLM10), MITRE ATLAS for technique taxonomy, ISO/IEC 42001 for the AI management system, and EU AI Act Article 15 for adversarial-robustness documentation. A board-facing architecture reports to all six."}}
+,{"@type":"Question","name":"What is the 90-day roadmap to a production AI security architecture?","acceptedAnswer":{"@type":"Answer","text":"Weeks 0–2: map your stack (models, retrieval, tools, memory, outputs, release boundaries). Weeks 2–6: instrument six defense layers and wire a versioned attack catalog into CI. Week 6: activate the release gate. Continuous: monthly attack-catalog mutation and per-layer catch-rate telemetry. The deliverable is a residual-risk number with a trend line — not a document."}}
+,{"@type":"Question","name":"Who should build enterprise AI security architecture in-house?","acceptedAnswer":{"@type":"Answer","text":"Most organizations need external AI red teaming principals: in-house teams can operate guardrails but rarely own the adversarial craft — multi-turn injection, tool-chain escalation, vector poisoning, and eval-gaming. Look for a principal with a published attack catalog, measured catch rates, and a gate-as-code delivery model, not a report-only scope."}}
+]}
+</script>
+<style>
+:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:880px;margin:0 auto;padding:70px 6vw 90px}
+.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}
+h1{font-weight:100;font-size:clamp(30px,5vw,52px);letter-spacing:-1px;line-height:1.1;margin-bottom:12px}
+h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--magenta);text-transform:uppercase;margin-bottom:26px}
+h2{font-weight:200;font-size:24px;margin:36px 0 12px}
+h2 .n{font-family:var(--mono);color:var(--cyan);font-size:13px;margin-right:10px}
+h3{font-weight:400;font-size:16px;margin:20px 0 8px;color:#fff}
+p{margin-bottom:14px;color:#c4c8d4}
+ul,ol{margin:0 0 14px 20px;color:#c4c8d4}li{margin-bottom:8px}
+li b, p b{color:var(--text)}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:16px 0}
+.tbl th,.tbl td{border:1px solid rgba(0,240,255,.18);padding:9px 11px;text-align:left;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--cyan);text-transform:uppercase;background:rgba(0,240,255,.05)}
+.tbl td:first-child{font-family:var(--mono);font-size:11.5px;color:var(--green);white-space:nowrap}
+.tbl .win{color:var(--green);font-weight:600}
+.law{font-family:var(--mono);color:var(--cyan);font-size:14px;border:1px solid rgba(0,240,255,.3);background:rgba(0,240,255,.05);padding:14px 18px;margin:22px 0;letter-spacing:.4px}
+.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:44px 0}
+.cta h3{font-weight:300;font-size:19px;margin-bottom:10px;color:#fff}
+.cta a{color:var(--cyan);text-decoration:none}
+.cta .row{display:flex;gap:26px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}
+.faq{border:1px solid rgba(0,240,255,.15);padding:14px 16px;margin:10px 0}
+.faq h3{font-weight:600;color:var(--cyan);font-size:14.5px;margin-bottom:6px;font-family:var(--mono)}
+.faq p{margin:0;font-size:14px}
+.nav{display:flex;gap:14px;flex-wrap:wrap;margin:34px 0;font-family:var(--mono);font-size:12px}
+.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}
+.nav a:hover{color:var(--cyan);border-color:var(--cyan)}
+.foot{margin-top:50px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="band"></div>
+<div class="kick">Category Deep-Dive · AI Security Architecture · Dr. Deepanjan Saha, CAISO</div>
+<h1>AI Security Architecture:<br>The <em>Complete Enterprise</em> Blueprint</h1>
+<p>AI security has stopped being a filter purchase and became an architecture discipline. The enterprises winning it in 2026 don't ask "which guardrail should we add?" — they ask <b>which layer owns which attack class, how every layer is measured, and what structurally blocks a release when risk is unacceptable.</b> This page is the working reference: the six architecture patterns compared, the six-layer model that survived 200+ enterprise red team engagements, the standards mapping your board will ask for, and the 90-day route to a live, self-measuring architecture.</p>
+
+<h2><span class="n">01</span>The Six Architecture Patterns (Compared)</h2>
+<p>Every enterprise AI security posture is one of six shapes. Five of them fail the same way: they measure a <em>moment</em>, not the <em>system</em>.</p>
+<table class="tbl">
+<tr><th>Pattern</th><th>What it is</th><th>Where it breaks</th><th>Residual risk</th></tr>
+<tr><td>Single guardrail</td><td>One LLM or rule filter on the output path</td><td>One bypass = total bypass; 18–34% end-to-end evasion on modern attack catalogs</td><td>Not measured</td></tr>
+<tr><td>Stacked filters</td><td>3–5 serial filters, each catching its niche</td><td>Filters fail in correlation (same model family, same blind spot); the stack is nearly as weak as its weakest filter</td><td>Not measured</td></tr>
+<tr><td>Periodic red team</td><td>Quarterly jailbreak sessions, ad hoc</td><td>Catalog ages in weeks; what you tested in Q1 is not what Q3 attackers run</td><td>Point-in-time only</td></tr>
+<tr><td>Annual pentest</td><td>Big external test, report delivered</td><td>40%+ drift between tests; the report is a photo, not a control</td><td>Point-in-time only</td></tr>
+<tr><td>Zero-trust agentic</td><td>Tool gating, least-privilege grants on the MCP/agent plane</td><td>Covers the action plane, leaves the context/retrieval plane wide open</td><td>Plane-level only</td></tr>
+<tr><td class="win">Continuous multiplicative</td><td class="win">Six independent layers, each measured; residual risk = ∏ P(miss); release gate with a hard cap</td><td class="win">Weak bands are surfaced, mutated monthly, and gated — the math cannot be overridden by a checkbox</td><td class="win">Measured, trended, capped at 1%</td></tr>
+</table>
+<p>The last row is the architecture pattern this page is built around. The other five are not "wrong" — they are <b>partial</b>. The difference is epistemic: they produce opinions about safety; it produces a number with a trend line.</p>
+
+<h2><span class="n">02</span>The Six-Layer Model</h2>
+<p>The governing law is one line:</p>
+<div class="law">Residual Risk = P(L1 miss) × P(L2 miss) × P(L3 miss) × P(L4 miss) × P(L5 miss) × P(L6 miss)</div>
+<table class="tbl">
+<tr><th>Layer</th><th>Plane</th><th>Owns these attack classes</th></tr>
+<tr><td>L1</td><td>Perimeter — normalize, decode-then-filter, control-token scrub, directive detection</td><td>Direct jailbreaks, multi-turn prompt manipulation, encoding smuggling</td></tr>
+<tr><td>L2</td><td>Context &amp; system-prompt isolation — trust-tiered retrieval, cryptographic separation</td><td>Indirect injection: RAG, tools, web, email, multimodal payloads</td></tr>
+<tr><td>L3</td><td>Tool-call authorization — signed manifests, capability-union grants, JSON-RPC gating, kill-switch</td><td>Agentic escalation, MCP supply chain, sandbox escape, replay</td></tr>
+<tr><td>L4</td><td>Vector &amp; memory integrity — cosine-poisoning detection, provenance attestation</td><td>Vector poisoning, persistent memory backdoors, cross-tenant retrieval bleed</td></tr>
+<tr><td>L5</td><td>Output &amp; action gating — secret-free prompts, PII/secret redaction, egress allowlists, budgets</td><td>Exfiltration, downstream-action abuse, economic DoS</td></tr>
+<tr><td>L6</td><td>Adversarial meta-loop + release gate — 100-attack catalog, monthly mutation, G1–G8 checks</td><td>Eval-gaming, governance drift, supply-chain update backdoors, the meta-game itself</td></tr>
+</table>
+<p>Three rules keep the model honest. <b>Independence is the unit of value</b> — layers that fail in correlation nullify the product. <b>Measured catch rates, not brochure claims</b> — every layer's miss probability is measured on a versioned, integrity-checked attack corpus (a 100-attack endgame catalog, every attack with exactly one owner layer). <b>Structural gating</b> — the release check fails automatically if any layer's maturity drops or residual risk crosses the cap. No committee, no checkbox.</p>
+<p>At a 42% per-layer miss the product is ~0.55% end-to-end; at 10% it's one-in-a-million. That is the entire argument for architecture over guardrails: <b>the product term is the only math that punishes correlation</b>, and it's the only number a board can hold you to.</p>
+
+<h2><span class="n">03</span>The Standards Your Board Will Ask For</h2>
+<table class="tbl">
+<tr><th>Standard</th><th>Role in the architecture</th></tr>
+<tr><td>NIST AI RMF + Generative AI Profile (AI 600-1)</td><td>Governance spine: MAP-MEASURE-MANAGE-TRACE mapped to the six layers</td></tr>
+<tr><td>OWASP LLM Top 10 (LLM01–LLM10)</td><td>Board reporting vocabulary — every layer output is translated into LLM01–LLM10 terms</td></tr>
+<tr><td>MITRE ATLAS</td><td>Technique taxonomy: catalog rows carry ATLAS technique IDs, so detections are citable and comparable</td></tr>
+<tr><td>ISO/IEC 42001</td><td>The AI management system the architecture plugs into for audit</td></tr>
+<tr><td>EU AI Act Article 15</td><td>Adversarial robustness documentation requirement — the measured catch rates satisfy it natively</td></tr>
+</table>
+
+<h2><span class="n">04</span>The 90-Day Roadmap (Map → Instrument → Gate → Mastery)</h2>
+<ol>
+<li><b>Weeks 0–2 · Map.</b> Inventory every model, retrieval path, tool grant, memory store, and release boundary. The map is the attack-surface census; anything unlisted is assumed hostile by construction.</li>
+<li><b>Weeks 2–6 · Instrument.</b> Stand up the six layers; wire a versioned 100-attack catalog into CI; per-layer catch rates become standing telemetry from day one.</li>
+<li><b>Week 6 · Gate.</b> G1–G8 live: the release pipeline fails on instrumentation error, missing measurement, untested kill-switch, or residual risk above cap. Structural — a bad release cannot merge.</li>
+<li><b>Continuous · Mastery.</b> The meta-loop mutates the catalog monthly; the weakest band is always visible and always gets the next sprint. Residual risk is reported to the board as a number with a trend line, quarterly.</li>
+</ol>
+
+<h2><span class="n">05</span>Build, Buy, or Engage?</h2>
+<p><b>Build</b> the telemetry and the gate — they're your IP. <b>Buy</b> the commodity detectors — nobody wins on filter quality alone. <b>Engage</b> the adversarial craft: multi-turn injection, tool-chain escalation, vector poisoning, and eval-gaming are specialist skills that in-house teams rarely own end-to-end. The right principal delivers <b>the gate as code</b>, measured catch rates with corpus versions stamped in every report, and no report-only scope. If the quote you're evaluating says "deliverable: PDF," it's the photo, not the system.</p>
+
+<div class="cta">
+<h3>Chief architect engagement — AI security architecture, end to end</h3>
+<p style="margin-bottom:14px">Dr. Deepanjan Saha · Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect (CAISO). 15+ years · 47+ CVEs · 200+ pentests · 12 patents. Deliverable: six instrumented layers, a residual-risk number with a trend line, and the release gate wired into your CI.</p>
+<div class="row">
+<span>📞 <a href="tel:+919831743870" rel="noopener">+91 98317 43870</a></span>
+<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer">WhatsApp</a></span>
+<span>✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a></span>
+</div>
+</div>
+
+<h2><span class="n">06</span>FAQ</h2>
+<div class="faq"><h3>What is AI security architecture?</h3><p>The structural design of defenses around an enterprise AI stack — model, data, tools, outputs, and release process — where each defense layer owns specific attack classes, is continuously measured, and feeds a release gate. It replaces "which guardrail?" with "which layer owns this, and what's the measured miss probability?"</p></div>
+<div class="faq"><h3>How many layers should an AI security architecture have?</h3><p>Four is the floor; six covers it: perimeter, context isolation, tool authorization, vector/memory integrity, output gating, and the adversarial meta-loop with the release gate. Fewer than four leaves a whole plane unowned — the multiplication law means one missing layer caps your residual risk at that layer's miss rate.</p></div>
+<div class="faq"><h3>What is residual risk in AI security, and how is it computed?</h3><p>The end-to-end probability that an attack reaches a harmful outcome despite all defenses. Computed as the product of each layer's measured miss probability: 0.42⁶ ≈ 0.55% at a 42% per-layer miss. It's only meaningful when every miss rate is measured on the same versioned attack corpus — which is why the release gate stamps corpus versions in every report.</p></div>
+<div class="faq"><h3>Is defense-in-depth for AI the same as network defense-in-depth?</h3><p>Same doctrine, different failure mode. Networks degrade gracefully; AI systems fail <em>in correlation</em> — two filters built on the same model family share blind spots, so correlated failures are the norm, not the exception. The architecture fix is independence: each layer must own a distinct failure surface, and G8 structurally fails the release if maturity or residual risk breaches the cap.</p></div>
+<div class="faq"><h3>How often should an AI attack catalog be updated?</h3><p>Monthly minimum. The meta-loop mutates the catalog — new encodings, new tool surfaces, new model generations shift what bypasses what. A catalog older than one quarter is measuring last season's threat; that's exactly the failure mode periodic red teaming and annual pentests have.</p></div>
+<div class="faq"><h3>What does "the gate as code" mean in practice?</h3><p>The release check lives in your CI: it fails a build when instrumentation is broken, a layer's measurement is missing, the kill-switch hasn't been test-executed, or residual risk exceeds the cap. Consequence: security posture becomes a build property, not a meeting outcome. You stop asking "is the new model safe?" and start reading a number.</p></div>
+
+<div class="nav">
+<a href="../zero-trust/">Cybersecurity Architecture →</a>
+<a href="../standard/">The 6-Layer Standard</a>
+<a href="../mcp-security/">MCP Security</a>
+<a href="../rag-defense/">RAG Defense</a>
+<a href="../ai-red-teaming/">AI Red Teaming</a>
+<a href="../">Full Coverage Map</a>
+</div>
+<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · EST. 2010 · 47+ CVEs · 200+ PENTESTS · 12 PATENTS</div>
+</div>
+</body>
+</html>
