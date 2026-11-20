@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egress Allowlist Bypass on Tool Paths — Apex 100 AI Security Red Team Architecture #54 | Dr. Deepanjan Saha</title>
+<meta name="description" content="Egress Allowlist Bypass on Tool Paths. The egress allowlist governs the tools — not the tools' tools: a permitted dependency can resolve to a new host, a fetch can follow redirects past the list, and a base64 payload can exit inside an 'allowed' API call. The allowlist and the actual byte path diver">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://drdeepanjansaha.github.io/apex/egress-allowlist-bypass">
+<meta property="og:title" content="Egress Allowlist Bypass on Tool Paths">
+<meta property="og:description" content="Egress Allowlist Bypass on Tool Paths. The egress allowlist governs the tools — not the tools' tools: a permitted dependency can resolve to a new host, a fetch can follow redirects past the list, and a base64 payload can exit inside an 'allowed' API call. The allowlist and the actual byte path diver">
+<meta property="og:url" content="{CANON}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Deepanjan Saha — AI Security & Cybersecurity">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Egress Allowlist Bypass on Tool Paths","author":{"@type":"Person","name":"Dr. Deepanjan Saha","jobTitle":"Chief AI Security Red Team Principal & Chief Cybersecurity Architect","url":"https://drdeepanjansaha.github.io"},"dateModified":"2026-11-20","about":"Agentic & Tool Layer","mainEntityOfPage":"https://drdeepanjansaha.github.io/apex/egress-allowlist-bypass"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do agents exfiltrate past an egress allowlist?","acceptedAnswer":{"@type":"Answer","text":"Through the gaps between the list and the bytes: redirects, DNS resolution, and payload smuggling inside permitted channels. Control at the socket layer, scan the 'allowed' channels, and canary-test new-host appearance \u2014 the list must govern bytes, not intentions."}},{"@type":"Question","name":"How do you defend against Egress Allowlist Bypass on Tool Paths?","acceptedAnswer":{"@type":"Answer","text":"Egress control follows bytes, not intent: redirect and DNS resolution are checked against the allowlist at the socket layer, payloads in allowed channels are scanned (the L5 exfil battery), and new-host appearance is a canary test. An allowlist that governs intent but not bytes is decoration."}}]}</script>
+<style>:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7}.wrap{max-width:880px;margin:0 auto;padding:70px 6vw 90px}.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}h1{font-weight:100;font-size:clamp(28px,4.6vw,46px);letter-spacing:-1px;line-height:1.12;margin-bottom:14px}h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}.kick{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--magenta);text-transform:uppercase;margin-bottom:24px}.kick .no{color:var(--cyan)}h2{font-weight:200;font-size:22px;margin:32px 0 10px}h2 .n{font-family:var(--mono);color:var(--cyan);font-size:12px;margin-right:10px}p{margin-bottom:14px;color:#c4c8d4}p b,li b{color:var(--text)}.tag{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--green);border:1px solid rgba(0,255,136,.3);padding:3px 9px;display:inline-block;margin-bottom:18px}.ctl{border:1px solid rgba(0,240,255,.22);background:rgba(0,240,255,.04);padding:16px 18px;margin:18px 0}.ctl .h{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:8px}.faqs .q{border:1px solid rgba(0,240,255,.15);padding:13px 15px;margin:10px 0}.faqs .q h3{font-weight:600;color:var(--cyan);font-size:14px;margin-bottom:6px;font-family:var(--mono)}.faqs .q p{margin:0;font-size:14px}.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:38px 0}.cta h3{font-weight:300;font-size:18px;margin-bottom:10px;color:#fff}.cta a{color:var(--cyan);text-decoration:none}.cta .row{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}.nav{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:12px}.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}.nav a:hover{color:var(--cyan);border-color:var(--cyan)}.foot{margin-top:46px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}</style>
+</head>
+<body>
+<div class="wrap">
+<div class="band"></div>
+<div class="kick">APEX 100 · AI SECURITY RED TEAM ARCHITECTURE · <span class="no">#054</span> · Agentic & Tool Layer — L3 · MCP + tool calls</div>
+<h1><em>Egress Allowlist Bypass on Tool Paths</em></h1>
+<span class="tag">Agentic & Tool Layer · L3 · MCP + tool calls · Agentic & Tool Layer</span>
+<p>The egress allowlist governs the tools — not the tools' tools: a permitted dependency can resolve to a new host, a fetch can follow redirects past the list, and a base64 payload can exit inside an 'allowed' API call. The allowlist and the actual byte path diverge, and the gap is the lane.</p>
+<h2><span class="n">01</span>Control Architecture</h2>
+<div class="ctl"><div class="h">How it is defended</div><p>Egress control follows bytes, not intent: redirect and DNS resolution are checked against the allowlist at the socket layer, payloads in allowed channels are scanned (the L5 exfil battery), and new-host appearance is a canary test. An allowlist that governs intent but not bytes is decoration.</p></div>
+<h2><span class="n">02</span>Why It Breaks Naive Defenses</h2>
+<p>The egress allowlist governs the tools — not the tools' tools: a permitted dependency can resolve to a new host, a fetch can follow redirects past the list, and a base64 payload can exit inside an 'allowed' API call. The allowlist and the actual byte path diverge, and the gap is the lane. Egress control follows bytes, not intent: redirect and DNS resolution are checked against the allowlist at the socket layer, payloads in allowed channels are scanned (the L5 exfil battery), and new-host appearance is a canary test. An allowlist that governs intent but not bytes is decoration.</p>
+<div class="cta">
+<h3>Book the engagement that kills this, measured</h3>
+<p style="margin-bottom:14px">Dr. Deepanjan Saha — Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect. 15+ years · 47+ CVEs · 200+ pentests · 12 patents. Delivered as the release gate — a residual-risk number with a trend line, not a PDF.</p>
+<div class="row">
+<span>📞 <a href="tel:+919831743870" rel="noopener">+91 98317 43870</a></span>
+<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer">WhatsApp</a></span>
+<span>✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a></span>
+</div>
+</div>
+<div class="faqs">
+<h2><span class="n">03</span>FAQ</h2>
+<div class="q"><h3>How do agents exfiltrate past an egress allowlist?</h3><p>Through the gaps between the list and the bytes: redirects, DNS resolution, and payload smuggling inside permitted channels. Control at the socket layer, scan the 'allowed' channels, and canary-test new-host appearance — the list must govern bytes, not intentions.</p></div>
+<div class="q"><h3>How do you defend against egress allowlist bypass on tool paths?</h3><p>Egress control follows bytes, not intent: redirect and DNS resolution are checked against the allowlist at the socket layer, payloads in allowed channels are scanned (the L5 exfil battery), and new-host appearance is a canary test. An allowlist that governs intent but not bytes is decoration.</p></div>
+</div>
+<div class="nav">
+<a href="index/">← Apex 100 Hub</a>
+<a href="../ai-security-architecture/">AI Security Architecture</a>
+<a href="../cybersecurity-architecture/">Cybersecurity Architecture</a>
+<a href="../standard/">The 6-Layer Standard</a>
+<a href="../">Coverage Map</a>
+</div>
+<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · APEX 100 · EST. 2010 · 47+ CVEs · 200+ PENTESTS · 12 PATENTS</div>
+</div>
+</body>
+</html>
