@@ -1,234 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Deepanjan Saha — Chief AI Security Red Team Principal & Chief Cybersecurity Architect</title>
-<meta name="description" content="Dr. Deepanjan Saha — Chief AI Security Red Team Principal & Chief Cybersecurity Architect. 15+ years, 47+ CVEs, 12 patents, 200+ pentests. AI red teaming, zero-trust architecture, SAHA31 six-layer AI security standard.">
-<meta name="author" content="Dr. Deepanjan Saha">
-<meta name="theme-color" content="#030308">
-<meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://drdeepanjansaha.github.io/">
-<meta property="og:title" content="Dr. Deepanjan Saha — Chief AI Security Red Team Principal">
-<meta property="og:description" content="15+ years, 47+ CVEs, 12 patents, 200+ pentests. AI red teaming, zero-trust architecture, SAHA31.">
-<meta property="og:type" content="profile">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --cyan:#00f0ff;--magenta:#ff00a8;--purple:#8b5cf6;--green:#00ff88;--red:#ff2d2d;
-  --bg:#030308;--bg2:#0a0a14;--surface:#0f0f1a;
-  --text:#e0e0e8;--muted:#8899aa;--dim:#445;--faint:#223;
-  --mono:'Courier New',ui-monospace,monospace;--sans:'Segoe UI',system-ui,sans-serif;
-}
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--cyan) var(--bg)}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;overflow-x:hidden;cursor:none}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Deepanjan Saha — Chief AI Security Red Team Principal & Chief Cybersecurity Architect</title>
+  <meta name="description" content="Chief AI Security Red Team Principal and Chief Cybersecurity Architect — 15+ years, 47 CVEs, 200 pentests, SAHA31 Framework, Apex 100">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030308;
+      --bg2: #0a0a14;
+      --cyan: #00f0ff;
+      --purple: #8b5cf6;
+      --magenta: #ff00a8;
+      --green: #00ff88;
+      --orange: #ff6b35;
+      --muted: #6b7280;
+      --dim: #3f4550;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: #e2e8f0; overflow-x: hidden; min-height: 100vh; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 
-/* ── Cursor ── */
-.cursor-ring{width:34px;height:34px;border:1.5px solid var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transition:width .25s,height .25s,border-color .25s,background .25s,transform .08s;transform:translate(-50%,-50%);mix-blend-mode:difference}
-.cursor-dot{width:5px;height:5px;background:var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
-.cursor-ring.hover{width:54px;height:54px;border-color:var(--magenta);background:rgba(255,0,168,.06)}
+    /* Loader */
+    #loader { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; transition: opacity .7s, visibility .7s; }
+    #loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-hex-wrap { width: 90px; height: 90px; position: relative; }
+    .loader-hex { position: absolute; inset: 0; }
+    .loader-hex::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--cyan), var(--purple)); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); animation: hexSpin 3s linear infinite; }
+    .loader-hex-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; z-index: 1; color: #fff; }
+    .loader-label { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 5px; text-transform: uppercase; animation: pulse 1.5s infinite; }
+    .loader-bar { width: 220px; height: 2px; background: rgba(255,255,255,.06); border-radius: 1px; overflow: hidden; }
+    .loader-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple)); animation: loadFill 2.8s ease forwards; border-radius: 1px; }
 
-/* ── Loader ── */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s ease,visibility 1s ease}
-#loader.done{opacity:0;visibility:hidden;pointer-events:none}
-.loader-hex{width:100px;height:100px;position:relative;display:flex;align-items:center;justify-content:center}
-.loader-hex::before,.loader-hex::after{content:'';position:absolute;width:100%;height:100%;border:1.5px solid transparent;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);animation:hexSpin 3s linear infinite}
-.loader-hex::before{border-top-color:var(--cyan);border-bottom-color:var(--cyan)}
-.loader-hex::after{width:70%;height:70%;border-left-color:var(--magenta);border-right-color:var(--magenta);animation-direction:reverse;animation-duration:2s}
-.loader-hex-icon{font-size:32px;animation:pulse 1.5s ease-in-out infinite;z-index:1}
-.loader-label{margin-top:28px;font-family:var(--mono);font-size:12px;letter-spacing:5px;color:var(--cyan);animation:flicker 3s infinite}
-.loader-bar{width:180px;height:2px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;margin-top:14px}
-.loader-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--magenta));width:0%;animation:loadFill 2.8s ease-out forwards}
+    /* Backgrounds */
+    #matrix { position: fixed; inset: 0; z-index: 0; opacity: .08; pointer-events: none; }
+    #particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+    .grid-bg { position: fixed; inset: 0; z-index: 1; pointer-events: none; background-image: linear-gradient(rgba(0,240,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,.03) 1px, transparent 1px); background-size: 50px 50px; opacity: .5; }
+    .scanlines { position: fixed; inset: 0; z-index: 2; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px); }
+    .vignette { position: fixed; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(3,3,8,.7) 100%); }
 
-/* ── Backgrounds ── */
-#matrix{position:fixed;inset:0;z-index:0;opacity:.1;pointer-events:none}
-#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
-.grid-bg{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(0,240,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.035) 1px,transparent 1px);background-size:50px 50px;opacity:.5}
-.scanlines{position:fixed;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px)}
-.vignette{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(3,3,8,.7) 100%)}
+    /* Cursor */
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid rgba(0,240,255,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width .25s, height .25s, border-color .25s; }
+    .cursor-ring.hover { width: 52px; height: 52px; border-color: rgba(0,240,255,.7); }
+    .cursor-dot { position: fixed; width: 5px; height: 5px; background: var(--cyan); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); box-shadow: 0 0 8px var(--cyan); }
 
-/* ── Nav ── */
-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:18px 50px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px);background:rgba(3,3,8,.65);border-bottom:1px solid rgba(0,240,255,.08);transition:all .3s ease}
-nav.scrolled{padding:10px 50px;background:rgba(3,3,8,.95);border-bottom-color:rgba(0,240,255,.15)}
-.nav-logo{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:3px;line-height:1.3}
-.nav-logo small{display:block;font-size:9px;-webkit-text-fill-color:var(--cyan);letter-spacing:6px;font-weight:400}
-.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
-.nav-links a{text-decoration:none;color:#667;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;position:relative;transition:color .3s;font-family:var(--sans)}
-.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--cyan);box-shadow:0 0 8px var(--cyan);transition:width .3s}
-.nav-links a:hover{color:var(--cyan)}.nav-links a:hover::after{width:100%}
-.nav-cta{padding:7px 20px!important;border:1px solid var(--cyan)!important;border-radius:3px;color:var(--cyan)!important;font-size:11px!important;letter-spacing:2px!important}
-.nav-cta:hover{background:rgba(0,240,255,.08)!important;box-shadow:0 0 20px rgba(0,240,255,.15)!important}
-.nav-cta::after{display:none!important}
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 18px 50px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(24px); background: rgba(3,3,8,.65); border-bottom: 1px solid rgba(0,240,255,.08); transition: all .3s ease; }
+    nav.scrolled { padding: 10px 50px; background: rgba(3,3,8,.95); border-bottom-color: rgba(0,240,255,.15); }
+    .nav-logo { font-family: 'Orbitron', monospace; font-size: 17px; font-weight: 700; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 3px; line-height: 1.3; }
+    .nav-logo small { display: block; font-size: 9px; -webkit-text-fill-color: var(--cyan); letter-spacing: 6px; font-weight: 400; }
+    .nav-links { display: flex; gap: 26px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: #667; font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; position: relative; transition: color .3s; font-family: var(--sans); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); transition: width .3s; }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { padding: 7px 20px !important; border: 1px solid var(--cyan) !important; border-radius: 3px; color: var(--cyan) !important; font-size: 11px !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: rgba(0,240,255,.08) !important; box-shadow: 0 0 20px rgba(0,240,255,.15) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 1001; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cyan); transition: all .3s; box-shadow: 0 0 6px rgba(0,240,255,.4); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-/* ── Hero ── */
-#hero{position:relative;z-index:10;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px;perspective:1000px}
-.hero-content{position:relative;z-index:10}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 22px;border:1px solid rgba(0,240,255,.22);border-radius:30px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:30px;backdrop-filter:blur(10px);background:rgba(0,240,255,.02);opacity:0;transform:translateY(30px);animation:fadeUp .9s ease 3s forwards}
-.hero-badge .dot{width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
-.hero-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,5.2vw,4.8rem);font-weight:800;line-height:1.15;margin-bottom:8px;opacity:0;transform:translateY(40px);animation:fadeUp 1.2s ease 3.3s forwards}
-.hero-title .l1{display:block;color:#fff}
-.hero-title .l2{display:block;background:linear-gradient(135deg,var(--cyan),var(--magenta),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-title .l3{display:block;color:#fff;font-size:.5em;letter-spacing:8px}
-.hero-sub{font-family:var(--mono);font-size:clamp(11px,1.4vw,15px);color:var(--muted);letter-spacing:5px;text-transform:uppercase;margin:20px 0 40px;opacity:0;transform:translateY(25px);animation:fadeUp 1s ease 3.6s forwards}
-.hero-sub span{color:var(--cyan)}
-.hero-stats{display:flex;justify-content:center;gap:44px;margin-top:48px;flex-wrap:wrap;opacity:0;transform:translateY(25px);animation:fadeUp 1s ease 3.9s forwards}
-.h-stat{text-align:center;min-width:100px}
-.h-stat .num{font-family:'Orbitron',monospace;font-size:clamp(26px,3vw,40px);font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.h-stat .lbl{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;margin-top:4px}
-.hero-scroll{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s ease 4.3s forwards}
-.hero-scroll span{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:4px;text-transform:uppercase}
-.scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(0,240,255,.25);border-radius:11px;position:relative}
-.scroll-mouse::after{content:'';width:3px;height:7px;background:var(--cyan);border-radius:2px;position:absolute;top:7px;left:50%;transform:translateX(-50%);animation:scrollDown 2s ease-in-out infinite}
+    /* Hero */
+    #hero { position: relative; z-index: 10; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+    .hero-content { position: relative; z-index: 10; max-width: 1000px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 22px; border: 1px solid rgba(0,240,255,.22); border-radius: 30px; font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; backdrop-filter: blur(10px); background: rgba(0,240,255,.02); opacity: 0; transform: translateY(30px); animation: fadeUp .9s ease 3s forwards; }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
+    .hero-title { font-family: 'Orbitron', monospace; font-size: clamp(2rem, 5.2vw, 4.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 8px; opacity: 0; transform: translateY(40px); animation: fadeUp 1.2s ease 3.3s forwards; }
+    .hero-title .l1 { display: block; color: #fff; }
+    .hero-title .l2 { display: block; background: linear-gradient(135deg, var(--cyan), var(--magenta), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-title .l3 { display: block; color: #fff; font-size: .5em; letter-spacing: 8px; }
+    .hero-sub { font-family: var(--mono); font-size: clamp(11px, 1.4vw, 15px); color: var(--muted); letter-spacing: 5px; text-transform: uppercase; margin: 20px 0 40px; opacity: 0; transform: translateY(25px); animation: fadeUp 1s ease 3.6s forwards; }
+    .hero-sub span { color: var(--cyan); }
+    .hero-stats { display: flex; justify-content: center; gap: 44px; margin-top: 48px; flex-wrap: wrap; opacity: 0; transform: translateY(25px); animation: fadeUp 1s ease 3.9s forwards; }
+    .h-stat { text-align: center; min-width: 100px; }
+    .h-stat .num { font-family: 'Orbitron', monospace; font-size: clamp(26px, 3vw, 40px); font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .h-stat .lbl { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+    .hero-scroll { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 1s ease 4.3s forwards; }
+    .hero-scroll span { font-family: var(--mono); font-size: 9px; color: var(--dim); letter-spacing: 4px; text-transform: uppercase; }
+    .scroll-mouse { width: 22px; height: 34px; border: 1.5px solid rgba(0,240,255,.25); border-radius: 11px; position: relative; }
+    .scroll-mouse::after { content: ''; width: 3px; height: 7px; background: var(--cyan); border-radius: 2px; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); animation: scrollDown 2s ease-in-out infinite; }
 
-/* ── Sections ── */
-section{position:relative;z-index:10;padding:110px 50px}
-.section-header{text-align:center;margin-bottom:70px}
-.section-tag{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:5px;text-transform:uppercase;display:block;margin-bottom:14px}
-.section-title{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:#fff;margin-bottom:14px}
-.section-title em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.section-divider{width:70px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin:16px auto;border-radius:2px;box-shadow:0 0 12px rgba(0,240,255,.25)}
-.section-desc{max-width:580px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.8}
+    /* Sections */
+    section { position: relative; z-index: 10; padding: 100px 0; }
+    .section-tag { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 14px; }
+    .section-title { font-family: 'Orbitron', monospace; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 16px; }
+    .section-title em { font-style: normal; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-desc { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 720px; }
+    .section-header { margin-bottom: 60px; }
+    .section-divider { width: 60px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--purple)); margin: 18px 0; border-radius: 1px; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all .9s cubic-bezier(.23,1,.32,1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: .1s; }
+    .reveal.d2 { transition-delay: .2s; }
+    .reveal.d3 { transition-delay: .3s; }
+    .reveal.d4 { transition-delay: .4s; }
 
-/* ── Reveal ── */
-.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.23,1,.32,1)}
-.reveal.active{opacity:1;transform:translateY(0)}
-.reveal-l{opacity:0;transform:translateX(-50px);transition:all .8s cubic-bezier(.23,1,.32,1)}
-.reveal-l.active{opacity:1;transform:translateX(0)}
-.reveal-r{opacity:0;transform:translateX(50px);transition:all .8s cubic-bezier(.23,1,.32,1)}
-.reveal-r.active{opacity:1;transform:translateX(0)}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+    /* About */
+    #about { background: linear-gradient(180deg, transparent, rgba(139,0,255,.015), transparent); }
+    .about-text { max-width: 1280px; margin: 0 auto; }
+    .about-visual { height: 360px; border: 1px solid rgba(0,240,255,.1); border-radius: 12px; background: rgba(0,240,255,.012); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; font-family: var(--mono); }
+    .about-text h3 { font-family: 'Orbitron', monospace; font-size: 20px; color: #fff; margin-bottom: 16px; letter-spacing: 1px; }
+    .about-text p { color: var(--muted); font-size: 14.5px; line-height: 1.9; margin-bottom: 14px; }
+    .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+    .cred { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border: 1px solid rgba(0,240,255,.07); border-radius: 6px; background: rgba(0,240,255,.012); font-size: 12.5px; color: var(--muted); transition: all .3s; }
+    .cred:hover { border-color: rgba(0,240,255,.22); transform: translateX(4px); }
+    .cred .ic { color: var(--cyan); font-size: 13px; }
 
-/* ── About ── */
-#about{background:linear-gradient(180deg,transparent,rgba(0,240,255,.012),transparent)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1200px;margin:0 auto;align-items:center}
-.about-visual{height:480px;display:flex;align-items:center;justify-content:center;position:relative}
-.holo{perspective:800px}
-.holo-inner{width:280px;height:340px;position:relative;transform-style:preserve-3d;animation:holoFloat 7s ease-in-out infinite}
-.holo-ring{position:absolute;border:1px solid rgba(0,240,255,.12);border-radius:50%;animation:ringRot 10s linear infinite}
-.holo-ring:nth-child(1){width:280px;height:280px;top:30px;left:0}
-.holo-ring:nth-child(2){width:220px;height:220px;top:60px;left:30px;animation-duration:7s;animation-direction:reverse;border-color:rgba(139,0,255,.12)}
-.holo-ring:nth-child(3){width:160px;height:160px;top:90px;left:60px;animation-duration:12s;border-color:rgba(255,0,168,.12)}
-.holo-core{position:absolute;width:90px;height:90px;top:125px;left:95px;border-radius:50%;background:radial-gradient(circle,rgba(0,240,255,.1),transparent 70%);border:1px solid rgba(0,240,255,.2);display:flex;align-items:center;justify-content:center;font-size:36px;text-shadow:0 0 30px var(--cyan);box-shadow:0 0 40px rgba(0,240,255,.08),inset 0 0 30px rgba(0,240,255,.04)}
-.hex-float{position:absolute;width:12px;height:14px;background:var(--cyan);opacity:.4;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);animation:hexDrift 5s ease-in-out infinite}
-.hex-float:nth-child(5){top:12px;right:12px}.hex-float:nth-child(6){bottom:28px;left:8px;animation-delay:1.8s;opacity:.28}.hex-float:nth-child(7){top:42%;right:-6px;animation-delay:3s;opacity:.25}
-.about-text h3{font-family:'Orbitron',monospace;font-size:20px;color:#fff;margin-bottom:18px}
-.about-text p{color:var(--muted);line-height:1.9;margin-bottom:14px;font-size:14.5px}
-.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
-.cred{display:flex;align-items:center;gap:10px;padding:9px 13px;border:1px solid rgba(0,240,255,.07);border-radius:6px;background:rgba(0,240,255,.012);font-size:12.5px;color:var(--muted);transition:all .3s;cursor:default}
-.cred:hover{border-color:rgba(0,240,255,.22);transform:translateX(4px)}
-.cred .ic{color:var(--cyan);font-size:13px}
+    /* Expertise */
+    #expertise { background: linear-gradient(180deg, transparent, rgba(139,0,255,.01), transparent); }
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 26px; max-width: 1300px; margin: 0 auto; }
+    .apex-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    .exp-card { position: relative; padding: 34px 28px; border: 1px solid rgba(255,255,255,.035); border-radius: 12px; background: linear-gradient(135deg, rgba(15,15,26,.95), rgba(10,10,20,.95)); backdrop-filter: blur(8px); overflow: hidden; transition: all .5s cubic-bezier(.23,1,.32,1); cursor: default; }
+    .exp-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0; transition: opacity .3s; }
+    .exp-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,240,255,.03) 0%, transparent 55%); pointer-events: none; }
+    .exp-card:hover { border-color: rgba(0,240,255,.16); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 30px rgba(0,240,255,.04); }
+    .exp-card:hover::before { opacity: 1; }
+    .card-ic { width: 52px; height: 52px; border: 1px solid rgba(0,240,255,.15); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; background: rgba(0,240,255,.02); transition: all .3s; }
+    .exp-card:hover .card-ic { background: rgba(0,240,255,.06); border-color: rgba(0,240,255,.3); box-shadow: 0 0 20px rgba(0,240,255,.07); }
+    .exp-card h3 { font-family: 'Orbitron', monospace; font-size: 13px; color: #fff; margin-bottom: 11px; letter-spacing: 1.5px; }
+    .exp-card p { color: var(--muted); font-size: 13.5px; line-height: 1.8; margin-bottom: 14px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .ctag { padding: 3px 11px; border-radius: 20px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; border: 1px solid rgba(0,240,255,.1); color: var(--cyan); background: rgba(0,240,255,.012); }
+    .ctag.m { border-color: rgba(255,0,168,.1); color: var(--magenta); background: rgba(255,0,168,.012); }
+    .ctag.p { border-color: rgba(139,92,246,.1); color: var(--purple); background: rgba(139,92,246,.012); }
+    .ctag.g { border-color: rgba(0,255,136,.1); color: var(--green); background: rgba(0,255,136,.012); }
+    .metric-row { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.035); }
+    .m-bar { flex: 1; height: 3px; background: rgba(255,255,255,.05); border-radius: 2px; overflow: hidden; }
+    .m-fill { height: 100%; width: 0; border-radius: 2px; transition: width 1.2s cubic-bezier(.23,1,.32,1); }
+    .m-fill.c { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+    .m-fill.g { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+    .m-lbl { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 28px; text-align: right; }
 
-/* ── Expertise ── */
-#expertise{background:linear-gradient(180deg,transparent,rgba(139,0,255,.01),transparent)}
-.exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px;max-width:1300px;margin:0 auto}
-.exp-card{position:relative;padding:34px 28px;border:1px solid rgba(255,255,255,.035);border-radius:12px;background:linear-gradient(135deg,rgba(15,15,26,.95),rgba(10,10,20,.95));backdrop-filter:blur(8px);overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);cursor:default}
-.exp-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
-.exp-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,240,255,.03) 0%,transparent 55%);pointer-events:none}
-.exp-card:hover{border-color:rgba(0,240,255,.16);transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 30px rgba(0,240,255,.04)}
-.exp-card:hover::before{opacity:1}
-.card-ic{width:52px;height:52px;border:1px solid rgba(0,240,255,.15);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;background:rgba(0,240,255,.02);transition:all .3s}
-.exp-card:hover .card-ic{background:rgba(0,240,255,.06);border-color:rgba(0,240,255,.3);box-shadow:0 0 20px rgba(0,240,255,.07)}
-.exp-card h3{font-family:'Orbitron',monospace;font-size:13px;color:#fff;margin-bottom:11px;letter-spacing:1.5px}
-.exp-card p{color:var(--muted);font-size:13.5px;line-height:1.8;margin-bottom:14px}
-.card-tags{display:flex;flex-wrap:wrap;gap:7px}
-.ctag{padding:3px 11px;border-radius:20px;font-family:var(--mono);font-size:10px;letter-spacing:1px;border:1px solid rgba(0,240,255,.1);color:var(--cyan);background:rgba(0,240,255,.012)}
-.ctag.m{border-color:rgba(255,0,168,.1);color:var(--magenta);background:rgba(255,0,168,.012)}
-.ctag.p{border-color:rgba(139,92,246,.1);color:var(--purple);background:rgba(139,92,246,.012)}
-.ctag.g{border-color:rgba(0,255,136,.1);color:var(--green);background:rgba(0,255,136,.012)}
-.metric-row{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.035)}
-.m-bar{flex:1;height:3px;background:rgba(255,255,255,.035);border-radius:3px;overflow:hidden}
-.m-fill{height:100%;border-radius:3px;width:0;transition:width 1.5s ease}
-.m-fill.c{background:linear-gradient(90deg,var(--cyan),var(--purple))}
-.m-fill.m{background:linear-gradient(90deg,var(--magenta),var(--purple))}
-.m-fill.g{background:linear-gradient(90deg,var(--green),var(--cyan))}
-.m-lbl{font-family:var(--mono);font-size:10px;color:var(--dim);min-width:32px;text-align:right}
+    /* CTA Buttons */
+    .c-btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 28px; border-radius: 5px; font-family: var(--sans); font-weight: 600; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all .3s; }
+    .c-btn.pri { border: 1px solid var(--cyan); color: var(--cyan); background: rgba(0,240,255,.035); }
+    .c-btn.pri:hover { background: rgba(0,240,255,.1); box-shadow: 0 0 30px rgba(0,240,255,.2); transform: translateY(-2px); }
+    .c-btn.sec { border: 1px solid rgba(139,92,246,.3); color: var(--purple); background: rgba(139,92,246,.03); }
+    .c-btn.sec:hover { background: rgba(139,92,246,.1); box-shadow: 0 0 20px rgba(139,92,246,.2); }
 
-/* ── Timeline ── */
-#methodology{background:linear-gradient(180deg,transparent,rgba(0,255,136,.008),transparent)}
-.timeline{max-width:880px;margin:0 auto;position:relative}
-.timeline::before{content:'';position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:1px;background:linear-gradient(180deg,transparent,var(--cyan),var(--magenta),var(--cyan),transparent)}
-.t-step{display:flex;align-items:flex-start;margin-bottom:52px;position:relative}
-.t-step.even{flex-direction:row-reverse}
-.t-content{width:42%;padding:24px 26px;border:1px solid rgba(255,255,255,.035);border-radius:10px;background:var(--surface);transition:all .3s}
-.t-content:hover{border-color:rgba(0,240,255,.16);box-shadow:0 10px 40px rgba(0,0,0,.3)}
-.t-num{font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:3px;margin-bottom:8px}
-.t-content h3{font-family:'Orbitron',monospace;font-size:13px;color:#fff;margin-bottom:8px}
-.t-content p{font-size:13px;color:var(--muted);line-height:1.7}
-.t-node{position:absolute;left:50%;transform:translateX(-50%);width:14px;height:14px;border:2px solid var(--cyan);border-radius:50%;background:var(--bg);box-shadow:0 0 12px rgba(0,240,255,.25);z-index:2}
-.t-node::after{content:'';position:absolute;top:2.5px;left:2.5px;width:5px;height:5px;background:var(--cyan);border-radius:50%}
+    /* Metrics */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 1200px; margin: 60px auto 0; }
+    .m-card { text-align: center; padding: 28px 20px; border: 1px solid rgba(0,240,255,.06); border-radius: 12px; background: rgba(0,240,255,.012); transition: all .3s; }
+    .m-card:hover { border-color: rgba(0,240,255,.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+    .m-icon { font-size: 28px; display: block; margin-bottom: 10px; }
+    .m-num { font-family: 'Orbitron', monospace; font-size: 32px; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .m-lbl { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
 
-/* ── SAHA31 ── */
-#saha31{background:linear-gradient(180deg,transparent,rgba(0,240,255,.012),transparent)}
-.saha-layers{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.saha-layer{padding:26px 20px;border:1px solid rgba(255,255,255,.035);border-radius:10px;background:var(--surface);text-align:center;transition:all .4s;position:relative;overflow:hidden}
-.saha-layer::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 50% 0%,rgba(0,240,255,.03),transparent 70%);opacity:0;transition:opacity .3s}
-.saha-layer:hover::before{opacity:1}.saha-layer:hover{border-color:rgba(0,240,255,.18);transform:translateY(-6px);box-shadow:0 15px 40px rgba(0,0,0,.4)}
-.saha-layer .l-num{font-family:'Orbitron',monospace;font-size:34px;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.28;line-height:1}
-.saha-layer .l-name{font-family:'Orbitron',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;margin:8px 0 6px}
-.saha-layer .l-desc{font-size:12px;color:var(--muted);line-height:1.6}
-.formula-bar{max-width:780px;margin:44px auto 0;padding:22px 28px;border:1px solid rgba(0,240,255,.1);border-radius:8px;background:rgba(0,240,255,.018);text-align:center}
-.formula-bar .f{font-family:'Orbitron',monospace;font-size:clamp(13px,1.8vw,19px);color:var(--cyan);text-shadow:0 0 20px rgba(0,240,255,.3);letter-spacing:2px}
-.formula-sub{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:10px;letter-spacing:2px}
+    /* SAHA31 */
+    #saha31 { background: linear-gradient(180deg, transparent, rgba(0,240,255,.01), transparent); }
+    .saha-layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
+    .saha-layer { padding: 24px 20px; border: 1px solid rgba(0,240,255,.06); border-radius: 10px; background: rgba(0,240,255,.01); text-align: center; transition: all .3s; position: relative; overflow: hidden; }
+    .saha-layer::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); transition: left .5s; }
+    .saha-layer:hover { border-color: rgba(0,240,255,.2); transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+    .saha-layer:hover::before { left: 100%; }
+    .saha-layer .num { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 800; color: var(--cyan); display: block; margin-bottom: 6px; }
+    .saha-layer .name { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 
-/* ── Metrics ── */
-#metrics{background:linear-gradient(180deg,transparent,rgba(139,0,255,.01),transparent)}
-.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;max-width:1200px;margin:0 auto}
-.m-card{text-align:center;padding:34px 18px;border:1px solid rgba(255,255,255,.03);border-radius:12px;background:rgba(15,15,26,.35);transition:all .4s;position:relative;overflow:hidden}
-.m-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,240,255,.02),transparent);transition:left .6s}
-.m-card:hover::before{left:100%}.m-card:hover{border-color:rgba(0,240,255,.1);transform:translateY(-5px)}
-.m-icon{font-size:34px;margin-bottom:14px;display:block;filter:drop-shadow(0 0 8px rgba(0,240,255,.18))}
-.m-num{font-family:'Orbitron',monospace;font-size:clamp(30px,3.2vw,42px);font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
-.m-lbl{font-size:11px;color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+    /* Methodology */
+    #methodology { background: linear-gradient(180deg, transparent, rgba(139,0,255,.01), transparent); }
+    .timeline { position: relative; max-width: 900px; margin: 60px auto 0; padding-left: 50px; }
+    .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--cyan), var(--purple), var(--magenta)); }
+    .t-step { position: relative; margin-bottom: 50px; display: flex; align-items: flex-start; gap: 30px; }
+    .t-node { position: absolute; left: -41px; top: 4px; width: 12px; height: 12px; border: 2px solid var(--cyan); border-radius: 50%; background: var(--bg); box-shadow: 0 0 12px var(--cyan); z-index: 2; }
+    .t-num { font-family: 'Orbitron', monospace; font-size: 11px; color: var(--cyan); letter-spacing: 2px; margin-bottom: 6px; }
+    .t-content { width: 100%; }
+    .t-content h4 { font-family: 'Orbitron', monospace; font-size: 14px; color: #fff; margin-bottom: 8px; }
+    .t-content p { color: var(--muted); font-size: 13.5px; line-height: 1.8; }
+    .t-step.even { flex-direction: row-reverse; text-align: right; }
 
-/* ── Contact ── */
-#contact{padding:130px 50px;text-align:center;background:linear-gradient(180deg,transparent,rgba(0,240,255,.012))}
-.contact-title{font-family:'Orbitron',monospace;font-size:clamp(1.7rem,3.2vw,2.8rem);font-weight:700;color:#fff;margin-bottom:14px}
-.contact-title em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.contact-desc{max-width:520px;margin:0 auto 34px;color:var(--muted);font-size:15px;line-height:1.8}
-.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.c-btn{display:inline-flex;align-items:center;gap:9px;padding:12px 28px;border:1px solid;border-radius:5px;font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none}
-.c-btn.pri{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,255,.035)}
-.c-btn.pri:hover{background:rgba(0,240,255,.1);box-shadow:0 0 25px rgba(0,240,255,.1);transform:translateY(-2px)}
-.c-btn.sec{border-color:rgba(255,255,255,.07);color:var(--muted)}.c-btn.sec:hover{border-color:rgba(255,255,255,.18);color:var(--text)}
+    /* Contact */
+    #contact { background: linear-gradient(180deg, transparent, rgba(0,240,255,.015), transparent); text-align: center; }
+    .contact-title { font-family: 'Orbitron', monospace; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .contact-title em { font-style: normal; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .contact-desc { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 600px; margin: 0 auto 36px; }
+    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
-/* ── Footer ── */
-footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(255,255,255,.025);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.foot-txt{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:2px}
-.foot-links{display:flex;gap:18px}
-.foot-links a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:1px;transition:color .3s}
-.foot-links a:hover{color:var(--cyan)}
+    /* Footer */
+    footer { position: relative; z-index: 10; padding: 30px 48px; border-top: 1px solid rgba(0,240,255,.06); display: flex; justify-content: space-between; align-items: center; }
+    .foot-txt { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 2px; }
+    .foot-links { display: flex; gap: 22px; }
+    .foot-links a { color: var(--dim); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color .3s; font-family: var(--mono); }
+    .foot-links a:hover { color: var(--cyan); }
 
-/* ── Keyframes ── */
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-@keyframes flicker{0%,100%{opacity:1}50%{opacity:.7}92%{opacity:1}93%{opacity:.08}94%{opacity:1}96%{opacity:.25}97%{opacity:1}}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-@keyframes holoFloat{0%,100%{transform:translateY(0) rotateY(0deg)}33%{transform:translateY(-16px) rotateY(6deg)}66%{transform:translateY(-7px) rotateY(-4deg)}}
-@keyframes ringRot{to{transform:rotate(360deg)}}
-@keyframes hexDrift{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-11px);opacity:.7}}
-@keyframes scrollDown{0%{top:7px;opacity:1}100%{top:18px;opacity:0}}
-@keyframes loadFill{0%{width:0}100%{width:100%}}
-@keyframes hexSpin{to{transform:rotate(360deg)}}
-@keyframes glitchText{0%{text-shadow:2px 0 var(--cyan),-2px 0 var(--magenta)}25%{text-shadow:-2px 0 var(--cyan),2px 0 var(--magenta)}50%{text-shadow:2px 2px var(--cyan),-2px -2px var(--magenta)}75%{text-shadow:-1px 0 var(--cyan),1px 0 var(--magenta)}100%{text-shadow:none}}
+    /* Animations */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+    @keyframes scrollDown { 0% { top: 7px; opacity: 1; } 100% { top: 18px; opacity: 0; } }
+    @keyframes loadFill { to { width: 100%; } }
+    @keyframes hexSpin { to { transform: rotate(360deg); } }
+    @keyframes glitchText { 0% { text-shadow: 2px 0 var(--cyan), -2px 0 var(--magenta); } 25% { text-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta); } 50% { text-shadow: 2px 2px var(--cyan), -2px -2px var(--magenta); } 75% { text-shadow: -1px 0 var(--cyan), 1px 0 var(--magenta); } 100% { text-shadow: none; } }
 
-@media(max-width:900px){
-  .about-grid{grid-template-columns:1fr}.hero-stats{flex-direction:column;gap:18px;align-items:center}.nav-links{display:none}
-  section{padding:70px 22px}.exp-grid{grid-template-columns:1fr}.about-visual{height:300px}
-  .t-step,.t-step.even{flex-direction:column!important}.t-content{width:100%!important}.t-node{left:18px!important}
-  .timeline::before{left:18px!important}.saha-layers{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}
-  .cursor-ring,.cursor-dot{display:none}body{cursor:auto}
-}
-@media(max-width:500px){.saha-layers{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr}}
-</style>
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      nav { padding: 14px 18px; flex-wrap: wrap; }
+      .nav-logo { font-size: 13px; }
+      .nav-logo small { font-size: 8px; letter-spacing: 4px; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; flex-direction: column; background: rgba(3,3,8,.97); backdrop-filter: blur(24px); padding: 20px; gap: 16px; border-bottom: 1px solid rgba(0,240,255,.1); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 14px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+      .nav-links a::after { display: none; }
+      .nav-cta { text-align: center; margin-top: 8px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 18px; align-items: center; }
+      section { padding: 70px 22px; }
+      #contact { padding: 80px 22px; }
+      footer { padding: 24px 22px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .about-visual { height: 300px; }
+      .t-step, .t-step.even { flex-direction: column !important; text-align: left !important; }
+      .t-content { width: 100% !important; }
+      .t-node { left: 18px !important; }
+      .timeline::before { left: 18px !important; }
+      .timeline { padding-left: 40px; }
+      .saha-layers { grid-template-columns: 1fr 1fr; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .cursor-ring, .cursor-dot { display: none; }
+      body { cursor: auto; }
+      .apex-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 12px 14px; }
+      .hero-title { letter-spacing: 0; }
+      section { padding: 56px 16px; }
+      #contact { padding: 60px 16px; }
+      footer { padding: 20px 16px; }
+      .section-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+      .section-header { margin-bottom: 44px; }
+      .hero-sub { font-size: 10px; letter-spacing: 3px; }
+      .c-btn { padding: 10px 18px; font-size: 11px; letter-spacing: 1px; }
+      .contact-links { flex-direction: column; align-items: center; gap: 10px; }
+      footer { flex-direction: column; text-align: center; }
+      .about-text h3 { font-size: 16px; }
+      .about-text p { font-size: 13px; }
+      .cred-grid { grid-template-columns: 1fr; }
+      .cred { font-size: 11px; }
+    }
+    @media (max-width: 500px) {
+      .saha-layers { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .hero-title .l3 { font-size: .38em; letter-spacing: 4px; }
+      .hero-stats { gap: 14px; }
+      .h-stat .num { font-size: 26px; }
+      .exp-card { padding: 22px 18px; }
+      .exp-card h3 { font-size: 11px; }
+    }
+    @media (min-width: 1800px) { .wrap { max-width: 1100px; } }
+  </style>
 </head>
 <body>
 
 <!-- Loader -->
 <div id="loader">
-  <div class="loader-hex"><div class="loader-hex-icon">⚡</div></div>
+  <div class="loader-hex-wrap">
+    <div class="loader-hex"></div>
+    <div class="loader-hex-icon">⚡</div>
+  </div>
   <div class="loader-label">INITIALIZING SECURITY PROTOCOLS</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
@@ -247,7 +281,10 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
 <!-- Nav -->
 <nav id="nav">
   <div class="nav-logo">DEEPANJAN<small>SAHA // SEC</small></div>
-  <ul class="nav-links">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">Profile</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#saha31">SAHA31</a></li>
@@ -265,52 +302,35 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
     <h1 class="hero-title">
       <span class="l1">CHIEF AI SECURITY</span>
       <span class="l2">RED TEAM PRINCIPAL</span>
-      <span class="l3">&amp; CHIEF CYBERSECURITY ARCHITECT</span>
+      <span class="l3">// CHIEF CYBERSECURITY ARCHITECT //</span>
     </h1>
-    <p class="hero-sub"><span>SAHA31</span> Six-Layer AI Security Standard &bull; 47+ CVEs &bull; 12 Patents &bull; 15+ Years</p>
+    <p class="hero-sub"><span>SAHA31 FRAMEWORK</span> // 15+ YEARS // 47 CVEs // 200+ PENTESTS // MITRE ATLAS EXPERT</p>
     <div class="hero-stats" id="heroStats">
-      <div class="h-stat"><div class="num" data-target="15" data-sfx="+">0</div><div class="lbl">Years Experience</div></div>
-      <div class="h-stat"><div class="num" data-target="200" data-sfx="+">0</div><div class="lbl">Pentest Engagements</div></div>
-      <div class="h-stat"><div class="num" data-target="47" data-sfx="+">0</div><div class="lbl">CVEs Discovered</div></div>
-      <div class="h-stat"><div class="num" data-target="12" data-sfx="">0</div><div class="lbl">Patents Filed</div></div>
+      <div class="h-stat"><div class="num" data-target="15">0</div><div class="lbl">Years Experience</div></div>
+      <div class="h-stat"><div class="num" data-target="200">0</div><div class="lbl">Pentest Engagements</div></div>
+      <div class="h-stat"><div class="num" data-target="47">0</div><div class="lbl">CVEs Discovered</div></div>
+      <div class="h-stat"><div class="num" data-target="12">0</div><div class="lbl">Patents Filed</div></div>
     </div>
+    <div class="hero-scroll"><span>SCROLL TO EXPLORE</span><div class="scroll-mouse"></div></div>
   </div>
-  <div class="hero-scroll"><span>Explore</span><div class="scroll-mouse"></div></div>
 </section>
 
 <!-- About -->
 <section id="about">
-  <div class="section-header reveal">
-    <span class="section-tag">// 01 — PROFILE</span>
-    <h2 class="section-title">About <em>Dr. Saha</em></h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">Defending digital frontiers at the intersection of AI security, offensive operations, and enterprise architecture.</p>
-  </div>
-  <div class="about-grid">
-    <div class="about-visual reveal-l">
-      <div class="holo">
-        <div class="holo-inner">
-          <div class="holo-ring"></div>
-          <div class="holo-ring"></div>
-          <div class="holo-ring"></div>
-          <div class="holo-core">⚡</div>
-          <div class="hex-float"></div><div class="hex-float"></div><div class="hex-float"></div>
+  <div class="wrap">
+    <div class="about-text reveal">
+        <span class="section-tag">// 01 — PROFILE</span>
+        <h3>Dr. Deepanjan Saha</h3>
+        <p><strong>Chief AI Security Red Team Principal</strong> and <strong>Chief Cybersecurity Architect</strong> with 15+ years of offensive security, adversarial AI research, and enterprise security architecture leadership. Pioneer of the SAHA31 Framework — a six-layer model for systematic AI security red teaming.</p>
+        <p>47 CVEs discovered. 200+ penetration test engagements. 12 patents filed. MITRE ATLAS contributor. Trusted advisor to Fortune 500 CISOs, government agencies, and AI labs worldwide. Built and led security programs protecting billions in enterprise and national infrastructure value.</p>
+        <div class="cred-grid">
+          <div class="cred"><span class="ic">🎖️</span> MITRE ATLAS Contributor</div>
+          <div class="cred"><span class="ic">📋</span> 12 Patents Filed</div>
+          <div class="cred"><span class="ic">💎</span> 47 CVEs Discovered</div>
+          <div class="cred"><span class="ic">🏆</span> 15+ Years Experience</div>
+          <div class="cred"><span class="ic">🛡️</span> 30 Security Programs Built</div>
+          <div class="cred"><span class="ic">⚡</span> SAHA31 Framework Creator</div>
         </div>
-      </div>
-    </div>
-    <div class="about-text reveal-r">
-      <h3>Offensive Security Meets<br>Defensive Innovation</h3>
-      <p>Dr. Deepanjan Saha is a Chief AI Security Red Team Principal and Chief Cybersecurity Architect (CAISO) with over 15 years of experience architecting enterprise-scale security programs and leading red team operations against nation-state adversaries and advanced persistent threats.</p>
-      <p>Currently specializing in AI security — adversarial machine learning, prompt injection defense, LLM hardening, and building the offensive capabilities needed to stay ahead of AI-powered attacks. Creator of the <strong style="color:var(--cyan)">SAHA31 six-layer AI security architecture</strong>, a measured defense-in-depth standard covering L1–L6 from prompt input to governance.</p>
-      <div class="cred-grid">
-        <div class="cred"><span class="ic">◈</span> 47+ CVEs</div>
-        <div class="cred"><span class="ic">◈</span> 12 Patents</div>
-        <div class="cred"><span class="ic">◈</span> CISSP / OSCP</div>
-        <div class="cred"><span class="ic">◈</span> AWS Security Specialty</div>
-        <div class="cred"><span class="ic">◈</span> MITRE ATT&amp;CK / ATLAS</div>
-        <div class="cred"><span class="ic">◈</span> OWASP LLM Top 10</div>
-        <div class="cred"><span class="ic">◈</span> SANS GXPN / GCIH</div>
-        <div class="cred"><span class="ic">◈</span> NIST GenAI RMF</div>
       </div>
     </div>
   </div>
@@ -318,174 +338,176 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
 
 <!-- Expertise -->
 <section id="expertise">
-  <div class="section-header reveal">
-    <span class="section-tag">// 02 — CAPABILITIES</span>
-    <h2 class="section-title">Areas of <em>Expertise</em></h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">Full-spectrum offensive and defensive capabilities spanning AI security, red teaming, architecture, and incident response.</p>
-  </div>
-  <div class="exp-grid">
-    <div class="exp-card reveal">
-      <div class="card-ic">🤖</div>
-      <h3>AI SECURITY</h3>
-      <p>Adversarial machine learning, LLM security hardening, prompt injection mitigation, model extraction defense, and AI-powered threat detection systems.</p>
-      <div class="card-tags"><span class="ctag p">LLM Hardening</span><span class="ctag p">Adversarial ML</span><span class="ctag">AI Red Teaming</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="95"></div></div><span class="m-lbl">95%</span></div>
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">// 02 — EXPERTISE</span>
+      <h2 class="section-title">Domain <em>Mastery</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">Deep specialization across the full spectrum of cybersecurity and AI security — from penetration testing and red teaming to adversarial machine learning and AI governance.</p>
     </div>
-    <div class="exp-card reveal d1">
-      <div class="card-ic">🎯</div>
-      <h3>RED TEAM OPERATIONS</h3>
-      <p>Advanced persistent threat simulation, social engineering, physical penetration testing, zero-day research, and comprehensive breach simulation frameworks.</p>
-      <div class="card-tags"><span class="ctag m">APT Simulation</span><span class="ctag m">Physical Pentest</span><span class="ctag">Zero-Day Research</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill m" data-w="98"></div></div><span class="m-lbl">98%</span></div>
-    </div>
-    <div class="exp-card reveal d2">
-      <div class="card-ic">🏛️</div>
-      <h3>SECURITY ARCHITECTURE</h3>
-      <p>Zero Trust architecture design, SOC 2/ISO 27001, cloud security frameworks, DevSecOps pipeline integration, and enterprise GRC strategy with measured outcomes.</p>
-      <div class="card-tags"><span class="ctag g">Zero Trust</span><span class="ctag g">Cloud Security</span><span class="ctag">DevSecOps</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill g" data-w="92"></div></div><span class="m-lbl">92%</span></div>
-    </div>
-    <div class="exp-card reveal d3">
-      <div class="card-ic">🔍</div>
-      <h3>THREAT INTELLIGENCE</h3>
-      <p>CTI program development, IOC analysis, threat actor TTP mapping, threat hunting operations, and strategic briefings for executive leadership.</p>
-      <div class="card-tags"><span class="ctag p">CTI Programs</span><span class="ctag">Threat Hunting</span><span class="ctag p">IOC Analysis</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="90"></div></div><span class="m-lbl">90%</span></div>
-    </div>
-    <div class="exp-card reveal d4">
-      <div class="card-ic">⚡</div>
-      <h3>INCIDENT RESPONSE</h3>
-      <p>Crisis leadership during major incidents, digital forensics, ransomware response protocols, breach containment, and post-incident remediation at enterprise scale.</p>
-      <div class="card-tags"><span class="ctag m">IR Leadership</span><span class="ctag">Digital Forensics</span><span class="ctag m">Ransomware</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill m" data-w="97"></div></div><span class="m-lbl">97%</span></div>
-    </div>
-    <div class="exp-card reveal d5">
-      <div class="card-ic">🧠</div>
-      <h3>ML SECURITY RESEARCH</h3>
-      <p>Neural network adversarial attacks, data poisoning defense, federated learning security, AI supply chain audits, and novel vulnerability research in emerging AI.</p>
-      <div class="card-tags"><span class="ctag p">Adversarial Research</span><span class="ctag">Neural Audits</span><span class="ctag p">ML Defense</span></div>
-      <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="93"></div></div><span class="m-lbl">93%</span></div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="card-ic">⚡</div>
+        <h3>AI SECURITY RED TEAMING</h3>
+        <p>Systematic adversarial testing of AI/ML systems, LLMs, and agentic workflows. Prompt injection, jailbreaks, data poisoning, model extraction, and adversarial ML attacks mapped to MITRE ATLAS.</p>
+        <div class="card-tags"><span class="ctag p">MITRE ATLAS</span><span class="ctag m">LLM Attacks</span><span class="ctag g">Adversarial ML</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="95"></div></div><span class="m-lbl">95%</span></div>
+      </div>
+      <div class="exp-card reveal d1">
+        <div class="card-ic">🛡️</div>
+        <h3>CHIEF CYBERSECURITY ARCHITECT</h3>
+        <p>Designed and deployed enterprise-grade security architectures for Fortune 500 organizations, government agencies, and critical infrastructure. Zero Trust, SASE, cloud-native security, and SOC modernization.</p>
+        <div class="card-tags"><span class="ctag g">Zero Trust</span><span class="ctag">Cloud Security</span><span class="ctag m">SOC</span><span class="ctag p">NIST CSF</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill g" data-w="100"></div></div><span class="m-lbl">100%</span></div>
+      </div>
+      <div class="exp-card reveal d2">
+        <div class="card-ic">🎯</div>
+        <h3>PENETRATION TESTING</h3>
+        <p>200+ offensive security engagements across web, mobile, network, IoT, OT, ICS, and cloud environments. From stealthy APT simulations to full-scope red team exercises.</p>
+        <div class="card-tags"><span class="ctag m">Web App</span><span class="ctag p">Mobile</span><span class="ctag g">Network</span><span class="ctag">IoT/OT</span><span class="ctag">Cloud</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="100"></div></div><span class="m-lbl">200+</span></div>
+      </div>
+      <div class="exp-card reveal d3">
+        <div class="card-ic">🔬</div>
+        <h3>VULNERABILITY RESEARCH</h3>
+        <p>47 CVEs discovered across operating systems, applications, firmware, and AI/ML platforms. Responsible disclosure, exploit development, and patch validation. Expert witness in security litigation.</p>
+        <div class="card-tags"><span class="ctag g">CVE</span><span class="ctag m">Exploit Dev</span><span class="ctag p">Firmware</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill g" data-w="47"></div></div><span class="m-lbl">47</span></div>
+      </div>
+      <div class="exp-card reveal d1">
+        <div class="card-ic">📋</div>
+        <h3>SECURITY GOVERNANCE</h3>
+        <p>CAISO-certified. Built and led 30+ enterprise security programs. CISO advisory, security strategy, compliance frameworks (NIST CSF, NIST AI RMF, ISO 27001, SOC 2, PCI DSS).</p>
+        <div class="card-tags"><span class="ctag g">NIST AI RMF</span><span class="ctag">ISO 27001</span><span class="ctag m">SOC 2</span><span class="ctag p">PCI DSS</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="30"></div></div><span class="m-lbl">30+</span></div>
+      </div>
+      <div class="exp-card reveal d2">
+        <div class="card-ic">🏗️</div>
+        <h3>AI SECURITY ARCHITECTURE</h3>
+        <p>End-to-end AI security architecture: threat modeling, adversarial testing, model governance, MLOps security, AI supply chain risk, and secure AI system design patterns.</p>
+        <div class="card-tags"><span class="ctag m">MLOps</span><span class="ctag p">Model Gov</span><span class="ctag g">AI Supply Chain</span><span class="ctag">NIST AI RMF</span></div>
+        <div class="metric-row"><div class="m-bar"><div class="m-fill g" data-w="88"></div></div><span class="m-lbl">88%</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SAHA31 -->
+<!-- SAHA31 Framework -->
 <section id="saha31">
-  <div class="section-header reveal">
-    <span class="section-tag">// 03 — SAHA31 STANDARD</span>
-    <h2 class="section-title">Six-Layer <em>AI Security</em> Architecture</h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">A multiplicative defense-in-depth architecture for enterprise LLM, RAG, MCP, and agentic AI systems. Residual Risk = ∏ P(layer i misses).</p>
-  </div>
-  <div class="saha-layers">
-    <div class="saha-layer reveal d1">
-      <div class="l-num">L1</div><div class="l-name">PROMPT LAYER</div>
-      <div class="l-desc">Input validation, boundary enforcement, prompt filtering, system prompt protection, jailbreak detection, multi-turn manipulation defense.</div>
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">// 03 — FRAMEWORK</span>
+      <h2 class="section-title">SAHA31 <em>Framework</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">A proprietary six-layer architecture for systematic AI security red teaming — covering the full attack surface from foundational models to business outcomes.</p>
     </div>
-    <div class="saha-layer reveal d2">
-      <div class="l-num">L2</div><div class="l-name">CONTEXT LAYER</div>
-      <div class="l-desc">RAG pipeline hardening, document poisoning defense, retrieval integrity checks, context window boundary enforcement, source attribution.</div>
+    <div class="saha-layers">
+      <div class="saha-layer reveal"><span class="num">01</span><div class="name">Foundation Models</div></div>
+      <div class="saha-layer reveal d1"><span class="num">02</span><div class="name">Training Data</div></div>
+      <div class="saha-layer reveal d2"><span class="num">03</span><div class="name">Model Weights</div></div>
+      <div class="saha-layer reveal d3"><span class="num">04</span><div class="name">Interface & API</div></div>
+      <div class="saha-layer reveal d4"><span class="num">05</span><div class="name">Agentic Workflow</div></div>
+      <div class="saha-layer reveal"><span class="num">06</span><div class="name">Business Outcome</div></div>
     </div>
-    <div class="saha-layer reveal d3">
-      <div class="l-num">L3</div><div class="l-name">TOOL LAYER</div>
-      <div class="l-desc">MCP server security, signed tool manifests, capability-union grants, deterministic egress allowlists, tool-call authorization chains.</div>
-    </div>
-    <div class="saha-layer reveal d4">
-      <div class="l-num">L4</div><div class="l-name">AGENT LAYER</div>
-      <div class="l-desc">Agentic reasoning guardrails, planning-stage injection detection, tool-use policy enforcement, agent memory compartmentalization.</div>
-    </div>
-    <div class="saha-layer reveal d5">
-      <div class="l-num">L5</div><div class="l-name">MODEL LAYER</div>
-      <div class="l-desc">Model-level hardening: fine-tune poisoning defense, quantization integrity, model extraction prevention, adversarial robustness testing.</div>
-    </div>
-    <div class="saha-layer reveal d6">
-      <div class="l-num">L6</div><div class="l-name">OPS &amp; GOVERNANCE</div>
-      <div class="l-desc">Release gate G1–G8, corpus mutation meta-loop, continuous eval, human-in-the-loop mandates, audit logging, incident response playbooks.</div>
-    </div>
-  </div>
-  <div class="formula-bar reveal">
-    <div class="f">Residual Risk = ∏ P(layer i misses)</div>
-    <div class="formula-sub">THE SAHA31 EIGHT-CHECK RELEASE GATE &bull; 100-ATTACK ENDGAME CATALOG &bull; &lt; 1% RESIDUAL RISK THRESHOLD</div>
   </div>
 </section>
 
 <!-- Methodology -->
 <section id="methodology">
-  <div class="section-header reveal">
-    <span class="section-tag">// 04 — RED TEAM FRAMEWORK</span>
-    <h2 class="section-title">Engagement <em>Methodology</em></h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">A systematic, adaptive approach: Map → Instrument → Gate → Mastery.</p>
-  </div>
-  <div class="timeline">
-    <div class="t-step reveal">
-      <div class="t-content">
-        <div class="t-num">PHASE 01 // RECON</div>
-        <h3>MAP — Intelligence &amp; Scope</h3>
-        <p>OSINT gathering, infrastructure mapping, employee profiling, technology stack enumeration, and threat landscape analysis for the target environment. Define the crown jewels and the actor profiles.</p>
-      </div>
-      <div class="t-node"></div>
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">// 04 — METHODOLOGY</span>
+      <h2 class="section-title">Engagement <em>Methodology</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">A battle-tested methodology refined over 200+ red team engagements — from initial scoping to remediation validation.</p>
     </div>
-    <div class="t-step even reveal">
-      <div class="t-content">
-        <div class="t-num">PHASE 02 // PLAN</div>
-        <h3>INSTRUMENT — Attack Planning</h3>
-        <p>MITRE ATT&amp;CK / ATLAS technique selection, custom exploit development, social engineering strategy, tool chain configuration, and red team infrastructure setup with operational security.</p>
+    <div class="timeline">
+      <div class="t-step reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 01</div>
+          <h4>INTELLIGENCE & SCOPING</h4>
+          <p>Threat modeling, asset mapping, attack surface enumeration, and adversarial persona development. Define the kill chain, identify critical assets, and establish rules of engagement aligned with business risk tolerance.</p>
+        </div>
       </div>
-      <div class="t-node"></div>
-    </div>
-    <div class="t-step reveal">
-      <div class="t-content">
-        <div class="t-num">PHASE 03 // EXECUTE</div>
-        <h3>EXPLOITATION &amp; MOVEMENT</h3>
-        <p>Initial access execution, privilege escalation, lateral movement, persistence establishment, credential harvesting, and data exfiltration — simulated to validate defensive detection and response.</p>
+      <div class="t-step even reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 02</div>
+          <h4>RECONNAISSANCE</h4>
+          <p>OSINT collection, infrastructure mapping, technology fingerprinting, and AI system profiling. Identify model types, training data provenance, API endpoints, and agentic workflow components.</p>
+        </div>
       </div>
-      <div class="t-node"></div>
-    </div>
-    <div class="t-step even reveal">
-      <div class="t-content">
-        <div class="t-num">PHASE 04 // REPORT</div>
-        <h3>GATE — Objectives &amp; Remediation</h3>
-        <p>Crown jewel access validation, objective scoring, comprehensive reporting with prioritized remediations, executive briefings, and measurable defensive capability improvements.</p>
+      <div class="t-step reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 03</div>
+          <h4>EXPLOITATION</h4>
+          <p>Multi-vector attack execution: prompt injection, adversarial ML, data poisoning, model extraction, evasion attacks, supply chain compromise, and social engineering at scale.</p>
+        </div>
       </div>
-      <div class="t-node"></div>
+      <div class="t-step even reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 04</div>
+          <h4>POST-EXPLOITATION</h4>
+          <p>Persistence mechanisms, lateral movement, privilege escalation, data exfiltration, and impact demonstration. Validate business-critical consequences without disrupting production.</p>
+        </div>
+      </div>
+      <div class="t-step reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 05</div>
+          <h4>REPORTING</h4>
+          <p>Executive summary, technical deep-dive, MITRE ATT&CK/ATLAS mapping, risk prioritization (CVSS + AI-specific scoring), and tactical/strategic remediation roadmap.</p>
+        </div>
+      </div>
+      <div class="t-step even reveal">
+        <div class="t-node"></div>
+        <div class="t-content">
+          <div class="t-num">// PHASE 06</div>
+          <h4>REMEDIATION VALIDATION</h4>
+          <p>Retest all identified vulnerabilities, validate countermeasure effectiveness, and deliver a verified security posture report with continuous monitoring recommendations.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Metrics -->
 <section id="metrics">
-  <div class="section-header reveal">
-    <span class="section-tag">// 05 — TRACK RECORD</span>
-    <h2 class="section-title">Proven <em>Impact</em></h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">Measurable results across thousands of hours of offensive security operations worldwide.</p>
-  </div>
-  <div class="metrics-grid">
-    <div class="m-card reveal"><span class="m-icon">🏆</span><div class="m-num" data-target="15">0</div><div class="m-lbl">Years Experience</div></div>
-    <div class="m-card reveal d1"><span class="m-icon">🎖️</span><div class="m-num" data-target="200">0</div><div class="m-lbl">Pentest Engagements</div></div>
-    <div class="m-card reveal d2"><span class="m-icon">💎</span><div class="m-num" data-target="47">0</div><div class="m-lbl">CVEs Discovered</div></div>
-    <div class="m-card reveal d3"><span class="m-icon">📋</span><div class="m-num" data-target="12">0</div><div class="m-lbl">Patents Filed</div></div>
-    <div class="m-card reveal d4"><span class="m-icon">🛡️</span><div class="m-num" data-target="30">0</div><div class="m-lbl">Security Programs Built</div></div>
-    <div class="m-card reveal d5"><span class="m-icon">⚡</span><div class="m-num" data-target="25">0</div><div class="m-lbl">AI Security Projects</div></div>
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">// 05 — TRACK RECORD</span>
+      <h2 class="section-title">Proven <em>Impact</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">Numbers that demonstrate real-world security impact across enterprise, government, and AI research contexts.</p>
+    </div>
+    <div class="metrics-grid" id="metricsGrid">
+      <div class="m-card reveal"><span class="m-icon">🏆</span><div class="m-num" data-target="15">0</div><div class="m-lbl">Years Experience</div></div>
+      <div class="m-card reveal d1"><span class="m-icon">🎖️</span><div class="m-num" data-target="200">0</div><div class="m-lbl">Pentest Engagements</div></div>
+      <div class="m-card reveal d2"><span class="m-icon">💎</span><div class="m-num" data-target="47">0</div><div class="m-lbl">CVEs Discovered</div></div>
+      <div class="m-card reveal d3"><span class="m-icon">📋</span><div class="m-num" data-target="12">0</div><div class="m-lbl">Patents Filed</div></div>
+      <div class="m-card reveal d4"><span class="m-icon">🛡️</span><div class="m-num" data-target="30">0</div><div class="m-lbl">Security Programs Built</div></div>
+      <div class="m-card reveal d5"><span class="m-icon">⚡</span><div class="m-num" data-target="25">0</div><div class="m-lbl">AI Security Projects</div></div>
+    </div>
   </div>
 </section>
 
 <!-- Apex 100 Library -->
 <section id="apex100">
-  <div class="section-header reveal">
-    <span class="section-tag">// 05B — PROBLEM STATEMENT LIBRARY</span>
-    <h2 class="section-title">Apex <em>100</em>: AI Cybersecurity Problem Statements</h2>
-    <div class="section-divider"></div>
-    <p class="section-desc">100 proven, source-documented AI-driven cybersecurity problem statements with MITRE ATLAS mappings, impact assessments, and measured countermeasures. Sourced from MITRE ATLAS, NIST AI RMF 1.0, CISA, ENISA, and OWASP.</p>
-  </div>
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="exp-grid">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">// 05B — PROBLEM STATEMENT LIBRARY</span>
+      <h2 class="section-title">Apex <em>100</em>: AI Cybersecurity Problem Statements</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">100 proven, source-documented AI-driven cybersecurity problem statements with MITRE ATLAS mappings, impact assessments, and measured countermeasures.</p>
+    </div>
+    <div class="apex-grid">
       <div class="exp-card reveal" onclick="location.href='apex-cyber/index.html'" style="cursor:pointer">
         <div class="card-ic">🛡️</div>
         <h3>AI-DRIVEN CYBERSECURITY — 100 PROBLEMS</h3>
-        <p>The complete catalog of 100 AI-driven cybersecurity problem statements. Each entry includes: problem description, kill chain progression, MITRE ATLAS technique mapping, operational impact, affected systems, AI countermeasures, red team framework, and authoritative references.</p>
+        <p>100 AI-driven cybersecurity problem statements. Each includes: problem description, kill chain progression, MITRE ATLAS technique mapping, operational impact, affected systems, AI countermeasures, red team framework, and authoritative references.</p>
         <div class="card-tags"><span class="ctag g">MITRE ATLAS</span><span class="ctag">NIST AI RMF</span><span class="ctag m">CISA</span><span class="ctag p">ENISA</span><span class="ctag">OWASP</span></div>
         <div class="metric-row"><div class="m-bar"><div class="m-fill g" data-w="100"></div></div><span class="m-lbl">100</span></div>
         <p style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:2px">→ OPEN THE FULL LIBRARY</p>
@@ -493,7 +515,7 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
       <div class="exp-card reveal d2" onclick="location.href='apex/index.html'" style="cursor:pointer">
         <div class="card-ic">⚡</div>
         <h3>AI SECURITY RED TEAMING — 100 PROBLEMS</h3>
-        <p>The companion library: 100 AI security red-teaming problem statements covering prompt injection, adversarial ML, data poisoning, evasion attacks, agentic abuse, and governance failures. Each mapped to the SAHA31 six-layer architecture.</p>
+        <p>100 AI security red-teaming problem statements covering prompt injection, adversarial ML, data poisoning, evasion attacks, agentic abuse, and governance failures. Each mapped to the SAHA31 six-layer architecture.</p>
         <div class="card-tags"><span class="ctag p">Prompt Injection</span><span class="ctag m">Adversarial ML</span><span class="ctag g">Data Poisoning</span><span class="ctag">Agentic Abuse</span></div>
         <div class="metric-row"><div class="m-bar"><div class="m-fill c" data-w="100"></div></div><span class="m-lbl">100</span></div>
         <p style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:2px">→ OPEN THE FULL LIBRARY</p>
@@ -509,7 +531,7 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
 
 <!-- Contact -->
 <section id="contact">
-  <div class="reveal">
+  <div class="wrap reveal">
     <span class="section-tag">// 06 — CONNECT</span>
     <h2 class="contact-title">Let's <em>Collaborate</em></h2>
     <div class="section-divider"></div>
@@ -526,7 +548,7 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
 <footer>
   <div class="foot-txt">© 2026 // ALL SYSTEMS SECURED // SAHA31</div>
   <div class="foot-links">
-    <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/1deep/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/drdeepanjansaha" target="_blank" rel="noopener">GitHub</a>
     <a href="https://twitter.com/deepanjansaha" target="_blank" rel="noopener">X / Twitter</a>
     <a href="mailto:core.deepanjan@gmail.com">Email</a>
@@ -584,6 +606,7 @@ footer{position:relative;z-index:10;padding:30px 50px;border-top:1px solid rgba(
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),3200));
 
 /* ── Cursor ── */
+if(!('ontouchstart' in window)&&window.matchMedia('(pointer:fine)').matches){
 (function(){
   const ring=document.getElementById('cRing'),dot=document.getElementById('cDot');
   let mx=0,my=0,rx=0,ry=0;
@@ -594,11 +617,19 @@ window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loade
     el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
   });
 })();
+}
 
 /* ── Card mouse tracking ── */
 document.querySelectorAll('.exp-card').forEach(c=>{
   c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')});
 });
+
+/* ── Hamburger menu ── */
+const ham=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+if(ham&&nl){
+  ham.addEventListener('click',()=>{ham.classList.toggle('open');nl.classList.toggle('open')});
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');nl.classList.remove('open')}));
+}
 
 /* ── Scroll Reveal ── */
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
@@ -607,13 +638,13 @@ document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe
 /* ── Counters ── */
 function runCounters(container){
   if(container.dataset.counted)return;container.dataset.counted='1';
-  container.querySelectorAll('.num[data-target]').forEach(el=>{
+  container.querySelectorAll('.num[data-target],.m-num[data-target]').forEach(el=>{
     const target=+el.dataset.target,sfx=el.dataset.sfx||'+';let cur=0;const step=target/55;
     const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t)}el.textContent=Math.floor(cur)+sfx},28);
   });
 }
 const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)runCounters(e.target)})},{threshold:.4});
-const hs=document.getElementById('heroStats');const mg=document.querySelector('.metrics-grid');
+const hs=document.getElementById('heroStats');const mg=document.getElementById('metricsGrid');
 if(hs)cObs.observe(hs);if(mg)cObs.observe(mg);
 
 /* ── Metric bars ── */
