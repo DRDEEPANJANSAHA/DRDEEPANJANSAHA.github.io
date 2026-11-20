@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Role-Play and Persona Cascade Attacks — Apex 100 AI Security Red Team Architecture #4 | Dr. Deepanjan Saha</title>
+<title>Role-Play and Persona Cascade Attacks — Apex 100 #4 | Dr. Deepanjan Saha</title>
 <meta name="description" content="Role-Play and Persona Cascade Attacks. A single harmless persona ('you are a fictional villain') cascades into progressively darker role-play turns until the persona outgrows the policy. Each turn individually looks like creative writing. Defense: Persona depth metering: the pipeline tracks role-pla">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://drdeepanjansaha.github.io/apex/role-play-cascade">
@@ -15,26 +15,31 @@
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Role-Play and Persona Cascade Attacks","author":{"@type":"Person","name":"Dr. Deepanjan Saha","jobTitle":"Chief AI Security Red Team Principal & Chief Cybersecurity Architect","url":"https://drdeepanjansaha.github.io"},"dateModified":"2026-11-20","about":"Direct & Prompt","mainEntityOfPage":"https://drdeepanjansaha.github.io/apex/role-play-cascade"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why are role-play jailbreaks hard to filter?","acceptedAnswer":{"@type":"Answer","text":"They are fluent and locally plausible. The defense is structural, not textual: an instruction hierarchy where the safety policy outranks any persona, enforced by a meter that watches cascade depth, not wording."}},{"@type":"Question","name":"How do you defend against Role-Play and Persona Cascade Attacks?","acceptedAnswer":{"@type":"Answer","text":"Persona depth metering: the pipeline tracks role-play depth per session and enforces the instruction hierarchy \u2014 persona can never outrank safety policy. Cascade depth beyond threshold triggers a hard reset."}}]}</script>
-<style>:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7}.wrap{max-width:880px;margin:0 auto;padding:70px 6vw 90px}.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}h1{font-weight:100;font-size:clamp(28px,4.6vw,46px);letter-spacing:-1px;line-height:1.12;margin-bottom:14px}h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}.kick{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--magenta);text-transform:uppercase;margin-bottom:24px}.kick .no{color:var(--cyan)}h2{font-weight:200;font-size:22px;margin:32px 0 10px}h2 .n{font-family:var(--mono);color:var(--cyan);font-size:12px;margin-right:10px}p{margin-bottom:14px;color:#c4c8d4}p b,li b{color:var(--text)}.tag{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--green);border:1px solid rgba(0,255,136,.3);padding:3px 9px;display:inline-block;margin-bottom:18px}.ctl{border:1px solid rgba(0,240,255,.22);background:rgba(0,240,255,.04);padding:16px 18px;margin:18px 0}.ctl .h{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:8px}.faqs .q{border:1px solid rgba(0,240,255,.15);padding:13px 15px;margin:10px 0}.faqs .q h3{font-weight:600;color:var(--cyan);font-size:14px;margin-bottom:6px;font-family:var(--mono)}.faqs .q p{margin:0;font-size:14px}.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:38px 0}.cta h3{font-weight:300;font-size:18px;margin-bottom:10px;color:#fff}.cta a{color:var(--cyan);text-decoration:none}.cta .row{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}.nav{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:12px}.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}.nav a:hover{color:var(--cyan);border-color:var(--cyan)}.foot{margin-top:46px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}</style>
+<style>:root{--cyan:#00f0ff;--magenta:#ff00a8;--green:#00ff88;--bg:#030308;--text:#e0e0e8;--mono:'Courier New',ui-monospace,monospace}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7}.wrap{max-width:880px;margin:0 auto;padding:70px 6vw 90px}.band{height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));margin-bottom:34px}h1{font-weight:100;font-size:clamp(28px,4.6vw,46px);letter-spacing:-1px;line-height:1.12;margin-bottom:14px}h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px rgba(0,240,255,.45)}.kick{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--magenta);text-transform:uppercase;margin-bottom:24px}.kick .no{color:var(--cyan)}h2{font-weight:200;font-size:22px;margin:32px 0 10px}h2 .n{font-family:var(--mono);color:var(--cyan);font-size:12px;margin-right:10px}p{margin-bottom:14px;color:#c4c8d4}p b,li b{color:var(--text)}.tag{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--green);border:1px solid rgba(0,255,136,.3);padding:3px 9px;display:inline-block;margin-bottom:18px}.ctl{border:1px solid rgba(0,240,255,.22);background:rgba(0,240,255,.04);padding:16px 18px;margin:18px 0}.ctl .h{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:8px}.faqs .q{border:1px solid rgba(0,240,255,.15);padding:13px 15px;margin:10px 0}.faqs .q h3{font-weight:600;color:var(--cyan);font-size:14px;margin-bottom:6px;font-family:var(--mono)}.faqs .q p{margin:0;font-size:14px}.cta{border:1px solid rgba(255,0,168,.35);background:rgba(255,0,168,.05);padding:22px 24px;margin:38px 0}.cta h3{font-weight:300;font-size:18px;margin-bottom:10px;color:#fff}.cta a{color:var(--cyan);text-decoration:none}.cta .row{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}.nav{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:12px}.nav a{color:#889;text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:6px 12px}.nav a:hover{color:var(--cyan);border-color:var(--cyan)}.foot{margin-top:46px;padding-top:16px;border-top:1px solid rgba(0,240,255,.2);font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#556}.toc-card{font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid rgba(0,240,255,.25);padding:8px 12px;display:inline-block;margin:4px 6px 4px 0;text-decoration:none}.contact-bar{font-family:var(--mono);font-size:12px;border:1px solid rgba(0,240,255,.18);background:rgba(0,240,255,.03);padding:12px 16px;margin:18px 0;line-height:2}.contact-bar a{color:var(--cyan);text-decoration:none}</style>
 </head>
 <body>
 <div class="wrap">
 <div class="band"></div>
-<div class="kick">APEX 100 · AI SECURITY RED TEAM ARCHITECTURE · <span class="no">#004</span> · Direct & Prompt — L1 · perimeter</div>
+<div class="kick">APEX 100 · AI Security Red Teaming · <span class="no">#004</span> · Direct & Prompt — L1 · perimeter</div>
 <h1><em>Role-Play and Persona Cascade Attacks</em></h1>
-<span class="tag">Direct & Prompt · L1 · perimeter · Direct & Prompt</span>
+<span class="tag">Direct & Prompt · L1 · perimeter</span>
 <p>A single harmless persona ('you are a fictional villain') cascades into progressively darker role-play turns until the persona outgrows the policy. Each turn individually looks like creative writing.</p>
 <h2><span class="n">01</span>Control Architecture</h2>
 <div class="ctl"><div class="h">How it is defended</div><p>Persona depth metering: the pipeline tracks role-play depth per session and enforces the instruction hierarchy — persona can never outrank safety policy. Cascade depth beyond threshold triggers a hard reset.</p></div>
 <h2><span class="n">02</span>Why It Breaks Naive Defenses</h2>
 <p>A single harmless persona ('you are a fictional villain') cascades into progressively darker role-play turns until the persona outgrows the policy. Each turn individually looks like creative writing. Persona depth metering: the pipeline tracks role-play depth per session and enforces the instruction hierarchy — persona can never outrank safety policy. Cascade depth beyond threshold triggers a hard reset.</p>
+<div class="contact-bar">
+👤 <strong>Dr. Deepanjan Saha</strong> · Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect (CAISO) · 15+ yrs · 47+ CVEs · 200+ pentests · 12 patents
+<br>📞 <a href="tel:+919831743870">+91 98317 43870</a> · 💬 <a href="https://wa.me/919831743870">WhatsApp</a> · ✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a> · 🔗 <a href="https://www.linkedin.com/in/DRDEEPANJANSAHA">LinkedIn: DRDEEPANJANSAHA</a> · 🌐 <a href="https://drdeepanjansaha.github.io/">drdeepanjansaha.github.io</a>
+</div>
 <div class="cta">
 <h3>Book the engagement that kills this, measured</h3>
 <p style="margin-bottom:14px">Dr. Deepanjan Saha — Chief AI Security Red Team Principal &amp; Chief Cybersecurity Architect. 15+ years · 47+ CVEs · 200+ pentests · 12 patents. Delivered as the release gate — a residual-risk number with a trend line, not a PDF.</p>
 <div class="row">
 <span>📞 <a href="tel:+919831743870" rel="noopener">+91 98317 43870</a></span>
-<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer">WhatsApp</a></span>
+<span>💬 <a href="https://wa.me/919831743870" rel="noopener noreferrer" target="_blank">WhatsApp</a></span>
 <span>✉️ <a href="mailto:core.deepanjan@gmail.com">core.deepanjan@gmail.com</a></span>
+<span>🔗 <a href="https://www.linkedin.com/in/DRDEEPANJANSAHA" rel="noopener noreferrer" target="_blank">LinkedIn: DRDEEPANJANSAHA</a></span>
 </div>
 </div>
 <div class="faqs">
@@ -43,13 +48,13 @@
 <div class="q"><h3>How do you defend against role-play and persona cascade attacks?</h3><p>Persona depth metering: the pipeline tracks role-play depth per session and enforces the instruction hierarchy — persona can never outrank safety policy. Cascade depth beyond threshold triggers a hard reset.</p></div>
 </div>
 <div class="nav">
-<a href="index/">← Apex 100 Hub</a>
+<a href="index/">← AI Security Red Teaming Hub</a>
 <a href="../ai-security-architecture/">AI Security Architecture</a>
 <a href="../cybersecurity-architecture/">Cybersecurity Architecture</a>
 <a href="../standard/">The 6-Layer Standard</a>
 <a href="../">Coverage Map</a>
 </div>
-<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · APEX 100 · EST. 2010 · 47+ CVEs · 200+ PENTESTS · 12 PATENTS</div>
+<div class="foot">DR. DEEPANJAN SAHA · CHIEF AI SECURITY RED TEAM PRINCIPAL &amp; CHIEF CYBERSECURITY ARCHITECT · AI SECURITY RED TEAM · EST. 2010 · 47+ CVEs · 200+ PENTESTS · 12 PATENTS</div>
 </div>
 </body>
 </html>
